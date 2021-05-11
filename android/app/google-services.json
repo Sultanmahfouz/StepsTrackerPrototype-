@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1092764217093",
+    "project_id": "steps-tracker-prototype-1738f",
+    "storage_bucket": "steps-tracker-prototype-1738f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1092764217093:android:17d1d396c4e3388154116c",
+        "android_client_info": {
+          "package_name": "com.example.steps_tracker_prototype"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1092764217093-f8hqferib7moa5skifeahfrn6jtf797g.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyANzNyE7NGpx0no6Xfa3FUnBHstKBIpqGc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1092764217093-f8hqferib7moa5skifeahfrn6jtf797g.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:steps_tracker_prototype/screens/authentication/login.dart';
+import 'package:steps_tracker_prototype/screens/authentication/registration.dart';
 
 void main() {
   runApp(MyApp());
@@ -11,7 +12,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: Login(),
+      home: Registeration(),
     );
   }
 }

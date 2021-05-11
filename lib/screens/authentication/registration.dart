@@ -12,6 +12,7 @@ class Registeration extends StatefulWidget {
 class _RegisterationState extends State<Registeration> {
   String email;
   String password;
+  final _formkey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
@@ -34,44 +35,54 @@ class _RegisterationState extends State<Registeration> {
               Container(
                 padding:
                     EdgeInsets.only(top: 40, left: 25, right: 25, bottom: 40),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    TextFormField(
-                      onChanged: (value) {
-                        setState(() {
-                          email = value;
-                        });
-                      },
-                      keyboardType: TextInputType.emailAddress,
-                      decoration: fieldDecoration,
-                    ),
-                    SizedBox(
-                      height: 20,
-                    ),
-                    TextFormField(
-                      onChanged: (value) {
-                        setState(() {
-                          password = value;
-                        });
-                      },
-                      obscureText: true,
-                      decoration: fieldDecoration.copyWith(
-                          labelText: 'Password',
-                          prefixIcon: Icon(
-                            Icons.lock,
-                            color: primaryColor,
-                          )),
-                    ),
-                    SizedBox(
-                      height: 10,
-                    ),
-                  ],
+                child: Form(
+                  key: _formkey,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      TextFormField(
+                        validator: (value) =>
+                            value.isEmpty ? 'Enter a valid email' : null,
+                        onChanged: (value) {
+                          setState(() {
+                            email = value;
+                          });
+                        },
+                        keyboardType: TextInputType.emailAddress,
+                        decoration: fieldDecoration,
+                      ),
+                      SizedBox(
+                        height: 20,
+                      ),
+                      TextFormField(
+                        validator: (value) => value.length < 6
+                            ? 'Enter a valid password more than 6 characters'
+                            : null,
+                        onChanged: (value) {
+                          setState(() {
+                            password = value;
+                          });
+                        },
+                        obscureText: true,
+                        decoration: fieldDecoration.copyWith(
+                            labelText: 'Password',
+                            prefixIcon: Icon(
+                              Icons.lock,
+                              color: primaryColor,
+                            )),
+                      ),
+                      SizedBox(
+                        height: 10,
+                      ),
+                    ],
+                  ),
                 ),
               ),
               Center(
                 child: AuthButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    if (_formkey.currentState.validate()) {}
+                  },
                   title: 'SIGN UP',
                 ),
               ),

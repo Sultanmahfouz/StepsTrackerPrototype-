@@ -43,6 +43,7 @@ class _RegisterationState extends State<Registeration> {
                       TextFormField(
                         validator: (value) =>
                             value.isEmpty ? 'Enter a valid email' : null,
+                        style: TextStyle(color: primaryColor),
                         onChanged: (value) {
                           setState(() {
                             email = value;
@@ -58,6 +59,7 @@ class _RegisterationState extends State<Registeration> {
                         validator: (value) => value.length < 6
                             ? 'Enter a valid password more than 6 characters'
                             : null,
+                        style: TextStyle(color: primaryColor),
                         onChanged: (value) {
                           setState(() {
                             password = value;

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>1092764217093-g2sv1vnd805i4k8eutfsuu0nu2n5tn26.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.1092764217093-g2sv1vnd805i4k8eutfsuu0nu2n5tn26</string>
+	<key>API_KEY</key>
+	<string>AIzaSyAsm6npfBkSJMpoDsQLIKCKenFMiScww2M</string>
+	<key>GCM_SENDER_ID</key>
+	<string>1092764217093</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.example.stepsTrackerPrototype</string>
+	<key>PROJECT_ID</key>
+	<string>steps-tracker-prototype-1738f</string>
+	<key>STORAGE_BUCKET</key>
+	<string>steps-tracker-prototype-1738f.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:1092764217093:ios:15d7b0e2a189606954116c</string>
+</dict>
+</plist>

@@ -11,55 +11,55 @@ class _GetInfoState extends State<GetInfo> {
   String name;
   String imageUrl;
 
-  // Future<void> _showMyDialog() async {
-  //   return showDialog<void>(
-  //     context: context,
-  //     builder: (BuildContext context) {
-  //       return AlertDialog(
-  //         shape: RoundedRectangleBorder(
-  //             borderRadius: BorderRadius.all(Radius.circular(20.0))),
-  //         backgroundColor: Colors.white,
-  //         title: Text(
-  //           'Validation',
-  //           style: TextStyle(color: Colors.red),
-  //         ),
-  //         content: SingleChildScrollView(
-  //           child: ListBody(
-  //             children: <Widget>[
-  //               Text('Please choose a valid name'),
-  //             ],
-  //           ),
-  //         ),
-  //         actions: <Widget>[
-  //           GestureDetector(
-  //             child: Container(
-  //               height: 25,
-  //               width: 70,
-  //               decoration: BoxDecoration(
-  //                 color: primaryColor,
-  //                 borderRadius: BorderRadius.circular(10),
-  //               ),
-  //               margin: EdgeInsets.all(10),
-  //               child: Center(
-  //                 child: Text(
-  //                   'Noted',
-  //                   style: TextStyle(
-  //                     color: Colors.white,
-  //                     fontWeight: FontWeight.bold,
-  //                     fontSize: 13,
-  //                   ),
-  //                 ),
-  //               ),
-  //             ),
-  //             onTap: () {
-  //               Navigator.of(context).pop();
-  //             },
-  //           ),
-  //         ],
-  //       );
-  //     },
-  //   );
-  // }
+  Future<void> _showMyDialog() async {
+    return showDialog<void>(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.all(Radius.circular(20.0))),
+          backgroundColor: Colors.white,
+          title: Text(
+            'Validation',
+            style: TextStyle(color: Colors.red),
+          ),
+          content: SingleChildScrollView(
+            child: ListBody(
+              children: <Widget>[
+                Text('Please choose a valid name'),
+              ],
+            ),
+          ),
+          actions: <Widget>[
+            GestureDetector(
+              child: Container(
+                height: 25,
+                width: 70,
+                decoration: BoxDecoration(
+                  color: primaryColor,
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                margin: EdgeInsets.all(10),
+                child: Center(
+                  child: Text(
+                    'Noted',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 13,
+                    ),
+                  ),
+                ),
+              ),
+              onTap: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -141,7 +141,7 @@ class _GetInfoState extends State<GetInfo> {
                   onPressed: () {
                     if (name != null) {
                     } else {
-                      // _showMyDialog();
+                      _showMyDialog();
                     }
                   },
                   title: 'START',

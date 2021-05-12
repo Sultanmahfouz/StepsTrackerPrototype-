@@ -18,7 +18,7 @@ var decorationLayout = BoxDecoration(
 var textHeaderStyle = TextStyle(
   color: Colors.white,
   fontSize: 30,
-  letterSpacing: 2.5,
+  letterSpacing: 2.0,
 );
 
 var fieldDecoration = InputDecoration(

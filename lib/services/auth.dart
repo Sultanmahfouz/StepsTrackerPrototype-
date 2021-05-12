@@ -1,6 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:steps_tracker_prototype/models/user.dart';
-import 'package:steps_tracker_prototype/screens/services/user.dart';
+import 'package:steps_tracker_prototype/services/user.dart';
 
 class AuthService {
   final FirebaseAuth _auth = FirebaseAuth.instance;

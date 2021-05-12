@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:steps_tracker_prototype/components/constants.dart';
+import 'package:steps_tracker_prototype/screens/authentication/registration.dart';
 
 import 'components/button.dart';
 
@@ -89,7 +90,14 @@ class _LoginState extends State<Login> {
                             ),
                           ),
                           GestureDetector(
-                            onTap: () {},
+                            onTap: () {
+                              Navigator.pushReplacement(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => Registeration(),
+                                ),
+                              );
+                            },
                             child: Text(
                               'Create an account?',
                               style: TextStyle(color: Colors.white),

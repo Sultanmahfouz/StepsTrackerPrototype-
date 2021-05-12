@@ -89,12 +89,12 @@ class _RegisterationState extends State<Registeration> {
                 ),
                 Center(
                   child: AuthButton(
-                    onPressed: () {
+                    onPressed: () async {
                       if (_formkey.currentState.validate()) {
                         setState(() {
                           showSpinner = true;
                         });
-                        dynamic result = _auth.signUpWithEmailAndPassword(
+                        dynamic result = await _auth.signUpWithEmailAndPassword(
                           email,
                           password,
                           '', // name and image are not required from the user at this stage

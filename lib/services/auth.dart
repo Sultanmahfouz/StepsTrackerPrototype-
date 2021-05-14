@@ -34,4 +34,26 @@ class AuthService {
           )
         : null;
   }
+
+  // sign in a user
+  Future<UserData> signInWithEmailAndPassword(
+      String email, String password) async {
+    UserCredential result = await _auth.signInWithEmailAndPassword(
+        email: email, password: password);
+    User user = result.user;
+
+    return user != null ? UserData(uid: user.uid) : null;
+  }
+
+  // sign in a user anonymously
+  Future signInAnon() async {
+    try {
+      UserCredential result = await _auth.signInAnonymously();
+      User user = result.user;
+      return user;
+    } catch (error) {
+      print(error.toString());
+      return null;
+    }
+  }
 }

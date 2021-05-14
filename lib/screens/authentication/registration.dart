@@ -100,7 +100,6 @@ class _RegisterationState extends State<Registeration> {
                           '', // name and image are not required from the user at this stage
                           '',
                         );
-
                         if (result == null) {
                           setState(() {
                             error = 'Please enter a valid email or password';

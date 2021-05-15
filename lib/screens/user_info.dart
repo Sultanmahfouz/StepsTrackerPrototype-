@@ -1,4 +1,9 @@
+import 'dart:io';
+
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:steps_tracker_prototype/components/constants.dart';
 import 'authentication/components/button.dart';
 
@@ -10,6 +15,7 @@ class GetInfo extends StatefulWidget {
 class _GetInfoState extends State<GetInfo> {
   String name;
   String imageUrl;
+  File _imageFile;
 
   Future<void> _showMyDialog() async {
     return showDialog<void>(
@@ -61,6 +67,38 @@ class _GetInfoState extends State<GetInfo> {
     );
   }
 
+  Future<dynamic> updateUserAvatar(File imageFile) async {
+    var ref = FirebaseStorage.instance
+        .ref()
+        .child('users')
+        .child(FirebaseAuth.instance.currentUser.uid)
+        .child('user-image');
+
+    StorageUploadTask uploadTask = ref.putFile(imageFile);
+
+    final String photoUrl =
+        await (await uploadTask.onComplete).ref.getDownloadURL();
+
+    return photoUrl;
+  }
+
+  Future<void> pickImage(ImageSource source) async {
+    File selectedImage =
+        await ImagePicker.pickImage(source: ImageSource.gallery);
+
+    setState(() {
+      _imageFile = selectedImage;
+    });
+
+    if (_imageFile != null) {
+      var photoUrl = await updateUserAvatar(_imageFile);
+      setState(() {
+        imageUrl = photoUrl;
+        // set user avatar to be the url
+      });
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -98,7 +136,9 @@ class _GetInfoState extends State<GetInfo> {
                             bottom: 3,
                             right: 5,
                             child: InkWell(
-                              onTap: () {},
+                              onTap: () {
+                                pickImage(ImageSource.gallery);
+                              },
                               child: Icon(
                                 Icons.camera_alt_outlined,
                                 color: primaryColor,

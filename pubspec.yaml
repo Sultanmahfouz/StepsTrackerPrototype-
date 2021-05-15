@@ -33,6 +33,7 @@ dependencies:
   firebase_auth: ^0.18.0+1
   cloud_firestore: ^0.14.0+2
   modal_progress_hud_nsn: ^0.1.0-nullsafety-1
+  image_picker: ^0.6.7+14
 
 dev_dependencies:
   flutter_test:

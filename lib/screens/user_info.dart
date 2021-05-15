@@ -5,6 +5,7 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:steps_tracker_prototype/components/constants.dart';
+import 'package:steps_tracker_prototype/services/user.dart';
 import 'authentication/components/button.dart';
 
 class GetInfo extends StatefulWidget {
@@ -94,7 +95,6 @@ class _GetInfoState extends State<GetInfo> {
       var photoUrl = await updateUserAvatar(_imageFile);
       setState(() {
         imageUrl = photoUrl;
-        // set user avatar to be the url
       });
     }
   }
@@ -180,6 +180,11 @@ class _GetInfoState extends State<GetInfo> {
                 child: AuthButton(
                   onPressed: () {
                     if (name != null) {
+                      UserService(
+                        uid: FirebaseAuth.instance.currentUser.uid,
+                        name: name,
+                        avatar: imageUrl == null ? '' : imageUrl,
+                      ).updateUserData();
                     } else {
                       _showMyDialog();
                     }

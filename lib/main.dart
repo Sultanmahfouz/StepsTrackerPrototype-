@@ -4,6 +4,8 @@ import 'package:steps_tracker_prototype/screens/authentication/login.dart';
 import 'package:steps_tracker_prototype/screens/authentication/registration.dart';
 import 'package:steps_tracker_prototype/screens/user_info.dart';
 
+import 'screens/step_count.dart';
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
@@ -16,7 +18,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: Registeration(),
+      home: StepCounter(),
     );
   }
 }

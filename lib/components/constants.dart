@@ -41,3 +41,5 @@ var fieldDecoration = InputDecoration(
   fillColor: Colors.white,
   filled: true,
 );
+
+int healthPoints = 0;

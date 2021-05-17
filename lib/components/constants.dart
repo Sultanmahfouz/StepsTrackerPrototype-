@@ -42,4 +42,4 @@ var fieldDecoration = InputDecoration(
   filled: true,
 );
 
-int healthPoints = 0;
+int allStepsTaken = 0;

@@ -85,6 +85,7 @@ class _GetInfoState extends State<GetInfo> {
 
   Future<void> pickImage(ImageSource source) async {
     File selectedImage =
+        // ignore: deprecated_member_use
         await ImagePicker.pickImage(source: ImageSource.gallery);
 
     setState(() {

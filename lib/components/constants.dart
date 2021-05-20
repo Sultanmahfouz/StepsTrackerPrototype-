@@ -43,3 +43,4 @@ var fieldDecoration = InputDecoration(
 );
 
 int allStepsTaken = 0;
+int healthPoints = 200;

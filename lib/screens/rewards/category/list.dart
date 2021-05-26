@@ -43,7 +43,7 @@ class _CategoryListRewardsState extends State<CategoryListRewards> {
     return SingleChildScrollView(
       scrollDirection: Axis.horizontal,
       child: Padding(
-        padding: EdgeInsets.only(left: 8.0),
+        padding: EdgeInsets.only(left: 18.0),
         child: Row(
           children: List.generate(
             categoryListRewards.length,

@@ -2,12 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import 'package:steps_tracker_prototype/components/constants.dart';
 import 'package:steps_tracker_prototype/screens/authentication/registration.dart';
+import 'package:steps_tracker_prototype/screens/landing.dart';
 import 'package:steps_tracker_prototype/screens/user_info.dart';
 import 'package:steps_tracker_prototype/services/auth.dart';
 
 import 'components/button.dart';
 
 class Login extends StatefulWidget {
+  static String id = 'login_screen';
   @override
   _LoginState createState() => _LoginState();
 }
@@ -146,22 +148,6 @@ class _LoginState extends State<Login> {
                         }
                       },
                       title: 'Login',
-                    ),
-                  ),
-                  SizedBox(
-                    height: 15,
-                  ),
-                  Center(
-                    child: GestureDetector(
-                      onTap: () {
-                        print('Join as a guest');
-                      },
-                      child: Text(
-                        'Join as a guest ----> ',
-                        style: TextStyle(
-                          color: Colors.white,
-                        ),
-                      ),
                     ),
                   ),
                   Center(

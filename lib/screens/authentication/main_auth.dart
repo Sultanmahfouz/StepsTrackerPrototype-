@@ -26,7 +26,16 @@ class _MainAuthendicationState extends State<MainAuthendication> {
       body: ModalProgressHUD(
         inAsyncCall: showSpinner,
         child: Container(
-          decoration: decorationLayout,
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+                begin: Alignment.topCenter,
+                end: Alignment.bottomCenter,
+                colors: [
+                  Theme.of(context).scaffoldBackgroundColor,
+                  Theme.of(context).scaffoldBackgroundColor,
+                  secondaryColor,
+                ]),
+          ),
           height: double.infinity,
           width: double.infinity,
           child: SingleChildScrollView(
@@ -58,7 +67,7 @@ class _MainAuthendicationState extends State<MainAuthendication> {
                         side: BorderSide(color: Colors.grey),
                       ),
                       elevation: 4,
-                      color: Color(0xFFF99746),
+                      color: Theme.of(context).primaryColor,
                       onPressed: () {
                         Navigator.push(context,
                             MaterialPageRoute(builder: (context) => Login()));
@@ -94,7 +103,7 @@ class _MainAuthendicationState extends State<MainAuthendication> {
                         side: BorderSide(color: Colors.grey),
                       ),
                       elevation: 4,
-                      color: Colors.white,
+                      color: Theme.of(context).scaffoldBackgroundColor,
                       onPressed: () {
                         Navigator.push(
                           context,
@@ -108,7 +117,6 @@ class _MainAuthendicationState extends State<MainAuthendication> {
                           child: Text(
                             'SIGN UP',
                             style: TextStyle(
-                              color: Color(0xFFF99746),
                               letterSpacing: 2.0,
                               fontWeight: FontWeight.bold,
                               fontSize: 18,

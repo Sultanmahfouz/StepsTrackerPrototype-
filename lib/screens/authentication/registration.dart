@@ -27,7 +27,16 @@ class _RegisterationState extends State<Registeration> {
         child: Container(
           height: MediaQuery.of(context).size.height,
           width: MediaQuery.of(context).size.width,
-          decoration: decorationLayout,
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+                begin: Alignment.topCenter,
+                end: Alignment.bottomCenter,
+                colors: [
+                  Theme.of(context).scaffoldBackgroundColor,
+                  Theme.of(context).scaffoldBackgroundColor,
+                  secondaryColor,
+                ]),
+          ),
           child: SingleChildScrollView(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -57,7 +66,16 @@ class _RegisterationState extends State<Registeration> {
                             });
                           },
                           keyboardType: TextInputType.emailAddress,
-                          decoration: fieldDecoration,
+                          decoration: fieldDecoration.copyWith(
+                            labelText: 'Email',
+                            labelStyle: TextStyle(
+                              color: Theme.of(context).primaryColor,
+                            ),
+                            prefixIcon: Icon(
+                              Icons.email,
+                              color: Theme.of(context).primaryColor,
+                            ),
+                          ),
                         ),
                         SizedBox(
                           height: 20,
@@ -74,11 +92,15 @@ class _RegisterationState extends State<Registeration> {
                           },
                           obscureText: true,
                           decoration: fieldDecoration.copyWith(
-                              labelText: 'Password',
-                              prefixIcon: Icon(
-                                Icons.lock,
-                                color: primaryColor,
-                              )),
+                            labelText: 'Password',
+                            labelStyle: TextStyle(
+                              color: Theme.of(context).primaryColor,
+                            ),
+                            prefixIcon: Icon(
+                              Icons.lock,
+                              color: Theme.of(context).primaryColor,
+                            ),
+                          ),
                         ),
                         SizedBox(
                           height: 10,

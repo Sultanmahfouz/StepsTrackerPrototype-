@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import 'package:steps_tracker_prototype/components/constants.dart';
 import 'package:steps_tracker_prototype/screens/authentication/registration.dart';
-import 'package:steps_tracker_prototype/screens/landing.dart';
 import 'package:steps_tracker_prototype/screens/user_info.dart';
 import 'package:steps_tracker_prototype/services/auth.dart';
 
@@ -31,7 +30,16 @@ class _LoginState extends State<Login> {
         child: Container(
           height: MediaQuery.of(context).size.height,
           width: MediaQuery.of(context).size.width,
-          decoration: decorationLayout,
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+                begin: Alignment.topCenter,
+                end: Alignment.bottomCenter,
+                colors: [
+                  Theme.of(context).scaffoldBackgroundColor,
+                  Theme.of(context).scaffoldBackgroundColor,
+                  secondaryColor,
+                ]),
+          ),
           child: SingleChildScrollView(
             child: Form(
               key: _formkey,
@@ -61,7 +69,16 @@ class _LoginState extends State<Login> {
                             });
                           },
                           keyboardType: TextInputType.emailAddress,
-                          decoration: fieldDecoration,
+                          decoration: fieldDecoration.copyWith(
+                            labelText: 'Email',
+                            labelStyle: TextStyle(
+                              color: Theme.of(context).primaryColor,
+                            ),
+                            prefixIcon: Icon(
+                              Icons.email,
+                              color: Theme.of(context).primaryColor,
+                            ),
+                          ),
                         ),
                         SizedBox(
                           height: 20,
@@ -78,11 +95,15 @@ class _LoginState extends State<Login> {
                           },
                           obscureText: true,
                           decoration: fieldDecoration.copyWith(
-                              labelText: 'Password',
-                              prefixIcon: Icon(
-                                Icons.lock,
-                                color: primaryColor,
-                              )),
+                            labelText: 'Password',
+                            labelStyle: TextStyle(
+                              color: Theme.of(context).primaryColor,
+                            ),
+                            prefixIcon: Icon(
+                              Icons.lock,
+                              color: Theme.of(context).primaryColor,
+                            ),
+                          ),
                         ),
                         SizedBox(
                           height: 10,

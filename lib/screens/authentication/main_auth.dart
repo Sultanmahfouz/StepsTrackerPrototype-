@@ -1,10 +1,14 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import 'package:steps_tracker_prototype/components/constants.dart';
+import 'package:steps_tracker_prototype/models/user.dart';
 import 'package:steps_tracker_prototype/screens/authentication/login.dart';
 import 'package:steps_tracker_prototype/screens/authentication/registration.dart';
-import 'package:steps_tracker_prototype/screens/landing.dart';
 import 'package:steps_tracker_prototype/services/auth.dart';
+import 'package:steps_tracker_prototype/services/user.dart';
+
+import '../user_info.dart';
 
 class MainAuthendication extends StatefulWidget {
   static String id = 'auth_screen';
@@ -127,8 +131,16 @@ class _MainAuthendicationState extends State<MainAuthendication> {
                     if (result == null) {
                       print('error');
                     } else {
+                      UserService(uid: FirebaseAuth.instance.currentUser.uid)
+                          .setUserData(
+                        UserData(
+                            uid: FirebaseAuth.instance.currentUser.uid,
+                            name: 'guest',
+                            avatar: '',
+                            footSteps: ''),
+                      );
                       Navigator.pushReplacement(context,
-                          MaterialPageRoute(builder: (context) => Landing()));
+                          MaterialPageRoute(builder: (context) => GetInfo()));
                       setState(() {
                         showSpinner = false;
                         isAnon = true;

@@ -5,7 +5,7 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:steps_tracker_prototype/components/constants.dart';
-import 'package:steps_tracker_prototype/screens/landing.dart';
+import 'package:steps_tracker_prototype/screens/landing/landing.dart';
 import 'package:steps_tracker_prototype/services/user.dart';
 import 'authentication/components/button.dart';
 

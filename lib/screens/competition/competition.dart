@@ -22,10 +22,11 @@ class _CompetitionsState extends State<Competitions> {
   @override
   Widget build(BuildContext context) {
     if (widget.allUsers != null && widget.allUsers?.length != 0) {
+      print(widget.allUsers);
       currentUsers.addAll(widget.allUsers);
 
-      currentUsers.sort(
-          (a, b) => int.parse(a.footSteps).compareTo(int.parse(b.footSteps)));
+      currentUsers.sort((a, b) =>
+          int.parse(a.footSteps).compareTo(int.parse(b.footSteps ?? '0')));
     }
 
     return Scaffold(

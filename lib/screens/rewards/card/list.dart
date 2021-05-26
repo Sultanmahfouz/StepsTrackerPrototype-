@@ -32,13 +32,13 @@ class _RewardListCardState extends State<RewardListCard> {
       } else {
         return Container(
           padding: EdgeInsets.all(10),
-          child: Text('Unfortunatel, no rewards availabe at the moment :)'),
+          child: Text('Unfortunately, no rewards availabe at the moment :)'),
         );
       }
     } else {
       return Container(
         padding: EdgeInsets.all(10),
-        child: Text('Unfortunatel, no rewards availabe at the moment :)'),
+        child: Text('Unfortunately, no rewards availabe at the moment :)'),
       );
     }
   }

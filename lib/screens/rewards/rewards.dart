@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:percent_indicator/circular_percent_indicator.dart';
 import 'package:steps_tracker_prototype/components/constants.dart';
 import 'package:steps_tracker_prototype/menu/drawer.dart';
 import 'package:steps_tracker_prototype/models/reward.dart';
@@ -89,28 +90,11 @@ class _RewardsState extends State<Rewards> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Theme.of(context).primaryColor,
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       appBar: AppBar(
         elevation: 0,
-        backgroundColor: primaryColor,
-        title: Center(child: Text('Rewards')),
-        actions: [
-          // ChangeThemeButtonWidget(),
-          Icon(
-            Icons.run_circle,
-          ),
-          SizedBox(
-            width: 5,
-          ),
-          Center(
-            child: Text(
-              healthPoints.toString(),
-            ),
-          ),
-          SizedBox(
-            width: 10,
-          ),
-        ],
+        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+        title: Text('Rewards'),
       ),
       drawer: MyDrawer(isHighlighted),
       body: SingleChildScrollView(
@@ -119,26 +103,54 @@ class _RewardsState extends State<Rewards> {
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Row(
-                children: [
-                  Padding(
-                    padding: EdgeInsets.only(
-                      top: MediaQuery.of(context).size.height / 8,
-                      left: 30,
-                    ),
-                    child: Row(
+              Padding(
+                padding: EdgeInsets.only(top: 30.0, bottom: 30),
+                child: Center(
+                  child: CircularPercentIndicator(
+                    animateFromLastPercent: true,
+                    center: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Text(
-                          'Special Rewards',
+                          'Health Points',
                           style: TextStyle(
+                            fontSize: 15,
+                          ),
+                        ),
+                        SizedBox(
+                          height: 5,
+                        ),
+                        Text(
+                          healthPoints.toString() + '  /' + '  1000',
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
                             color: Theme.of(context).primaryColor,
-                            fontSize: 23,
+                            fontSize: 20,
                           ),
                         ),
                       ],
                     ),
+                    backgroundColor: Colors.grey[700],
+                    radius: 200.0,
+                    progressColor: Theme.of(context).primaryColor,
+                    percent: (1 / 1000.0) * healthPoints,
+                    animation: true,
+                    lineWidth: 14,
+                    circularStrokeCap: CircularStrokeCap.round,
                   ),
-                ],
+                ),
+              ),
+              Padding(
+                padding: EdgeInsets.only(
+                  left: 30,
+                ),
+                child: Text(
+                  'Special Rewards',
+                  style: TextStyle(
+                    color: Theme.of(context).primaryColor,
+                    fontSize: 23,
+                  ),
+                ),
               ),
               SizedBox(
                 height: 30,

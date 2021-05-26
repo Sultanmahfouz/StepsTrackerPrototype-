@@ -73,6 +73,24 @@ class _RewardItemCardState extends State<RewardItemCard> {
     points = int.parse(widget.reward.points ?? '0');
   }
 
+  String getRewardLevel(int points) {
+    if (points < 25) {
+      return 'silver.jpeg';
+    } else if (points < 70) {
+      return 'gold.jpeg';
+    }
+    return 'platinum.jpeg';
+  }
+
+  Color getRewardColor(int points) {
+    if (points < 25) {
+      return Color(0xFFC0C0C0);
+    } else if (points < 70) {
+      return Color(0xFFFFD700);
+    }
+    return Color(0xFFe5e4e2);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -83,7 +101,7 @@ class _RewardItemCardState extends State<RewardItemCard> {
             setState(() {
               healthPoints -= points;
             });
-            myRewards.add(widget.reward);
+            userCoupons.add(widget.reward);
             Fluttertoast.showToast(
               msg:
                   'You have got the reward successfully, please find you coupon in coupon section',
@@ -96,11 +114,11 @@ class _RewardItemCardState extends State<RewardItemCard> {
           }
         },
         child: Container(
-          height: 80,
+          height: 85,
           width: MediaQuery.of(context).size.width / 1.2,
           padding: EdgeInsets.symmetric(horizontal: 20, vertical: 12),
           decoration: BoxDecoration(
-            color: Colors.cyan[400],
+            color: Theme.of(context).secondaryHeaderColor,
             borderRadius: BorderRadius.circular(24),
           ),
           child: Row(
@@ -108,13 +126,14 @@ class _RewardItemCardState extends State<RewardItemCard> {
               Container(
                 height: 60,
                 width: 60,
-                child: Image.asset('assets/images/anonymous.png'),
+                child: Image.asset(
+                    'assets/images/${getRewardLevel(int.parse(widget.reward.points))}'),
                 decoration: BoxDecoration(
-                    color: Colors.green,
-                    borderRadius: BorderRadius.circular(8)),
+                  borderRadius: BorderRadius.circular(8),
+                ),
               ),
               SizedBox(
-                width: 12,
+                width: 14,
               ),
               Column(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -122,15 +141,30 @@ class _RewardItemCardState extends State<RewardItemCard> {
                 children: [
                   Text(
                     widget.reward.owner,
-                    style: TextStyle(color: Colors.white),
                   ),
                   Text(
                     widget.reward.product,
-                    style: TextStyle(color: Colors.white),
                   ),
-                  Text(
-                    widget.reward.points,
-                    style: TextStyle(color: Colors.white),
+                  Row(
+                    children: [
+                      Icon(
+                        Icons.circle,
+                        color: getRewardColor(
+                          int.parse(widget.reward.points),
+                        ),
+                      ),
+                      SizedBox(
+                        width: 5,
+                      ),
+                      Text(
+                        widget.reward.points,
+                        style: TextStyle(
+                          color: getRewardColor(
+                            int.parse(widget.reward.points),
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
                 ],
               ),

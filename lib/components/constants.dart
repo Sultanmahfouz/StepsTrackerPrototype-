@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:steps_tracker_prototype/models/reward.dart';
 
 Color primaryColor = Color(0xFF1CA0DE);
 Color secondaryColor = Color(0xFF24A0A7);
@@ -43,4 +44,8 @@ var fieldDecoration = InputDecoration(
 );
 
 int allStepsTaken = 0;
-int healthPoints = 200;
+int healthPoints = 30;
+
+bool isAnon = false;
+
+List<Reward> myRewards = [];

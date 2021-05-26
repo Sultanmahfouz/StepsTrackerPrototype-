@@ -14,8 +14,9 @@ class ThemeProvider extends ChangeNotifier {
 class MyTheme {
   static final lightTheme = ThemeData(
     scaffoldBackgroundColor: Colors.grey.shade900,
-    primaryColor: Colors.grey.shade900,
+    primaryColor: Color(0xFF24A0A7),
     colorScheme: ColorScheme.dark(),
+    secondaryHeaderColor: Colors.grey[800],
     iconTheme: IconThemeData(color: Colors.red, opacity: 0.8),
   );
 
@@ -24,8 +25,9 @@ class MyTheme {
     // primaryColor: Colors.white70,
     // colorScheme: ColorScheme.light(),
     // iconTheme: IconThemeData(color: Colors.cyan, opacity: 0.9),
-    scaffoldBackgroundColor: Colors.green[900],
-    primaryColor: Colors.grey.shade900,
+    scaffoldBackgroundColor: Colors.grey.shade900,
+    primaryColor: Color(0xFF24A0A7),
+    secondaryHeaderColor: Colors.grey[800],
     colorScheme: ColorScheme.dark(),
     iconTheme: IconThemeData(color: Colors.red, opacity: 0.8),
   );

@@ -16,17 +16,18 @@ class CategoryItemReward extends StatelessWidget {
         onTap: onTap,
         child: Container(
           height: 30,
-          width: 92,
+          width: 90,
           decoration: BoxDecoration(
-            color: isActive ? Colors.green : Colors.red,
+            color: isActive ? Theme.of(context).primaryColor : null,
             borderRadius: BorderRadius.circular(20),
           ),
           child: Center(
             child: Text(
               title,
               style: TextStyle(
-                color: isActive ? Colors.orange : Colors.white,
+                color: isActive ? Colors.black : Colors.white,
                 fontWeight: isActive ? FontWeight.bold : FontWeight.normal,
+                fontSize: 13,
               ),
             ),
           ),

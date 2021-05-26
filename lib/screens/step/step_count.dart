@@ -3,6 +3,8 @@ import 'dart:async';
 import 'package:pedometer/pedometer.dart';
 import 'package:percent_indicator/percent_indicator.dart';
 import 'package:steps_tracker_prototype/components/constants.dart';
+import 'package:steps_tracker_prototype/menu/drawer.dart';
+import 'package:steps_tracker_prototype/services/user.dart';
 
 class StepCounter extends StatefulWidget {
   @override
@@ -20,6 +22,7 @@ class _StepCounterState extends State<StepCounter> {
   int totalPoints = 0;
   bool isHealthPoint = false;
   bool exchangePointsOccured = false;
+  List<bool> isHighlighted = [false, false, true, false, false];
 
   @override
   void initState() {
@@ -35,6 +38,7 @@ class _StepCounterState extends State<StepCounter> {
       }
       currentStep = event.steps;
       _steps = event.steps.toString();
+      UserService().updateUserDataSteps(currentStep.toString());
 
       exchangePointsOccured = exchangePoints();
 
@@ -82,6 +86,7 @@ class _StepCounterState extends State<StepCounter> {
         backgroundColor: Color(0xFF252938),
         elevation: 0,
       ),
+      drawer: MyDrawer(isHighlighted),
       body: Center(
         child: SingleChildScrollView(
           child: Column(

@@ -31,14 +31,6 @@ var fieldDecoration = InputDecoration(
     borderRadius: BorderRadius.all(Radius.circular(15)),
     borderSide: BorderSide(color: primaryColor, width: 2),
   ),
-  prefixIcon: Icon(
-    Icons.email,
-    color: primaryColor,
-  ),
-  labelText: 'Email',
-  labelStyle: TextStyle(
-    color: primaryColor,
-  ),
   fillColor: Colors.white,
   filled: true,
 );
@@ -48,4 +40,4 @@ int healthPoints = 30;
 
 bool isAnon = false;
 
-List<Reward> myRewards = [];
+List<Reward> userCoupons = [];

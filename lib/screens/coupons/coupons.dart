@@ -18,10 +18,10 @@ class _CouponsState extends State<Coupons> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Theme.of(context).primaryColor,
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       appBar: AppBar(
         elevation: 0,
-        backgroundColor: primaryColor,
+        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
         title: Text('Coupons'),
       ),
       drawer: MyDrawer(isHighlighted),
@@ -31,35 +31,27 @@ class _CouponsState extends State<Coupons> {
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Row(
-                children: [
-                  Padding(
-                    padding: EdgeInsets.only(
-                      top: MediaQuery.of(context).size.height / 8,
-                      left: 30,
-                    ),
-                    child: Row(
-                      children: [
-                        Text(
-                          'My Rewards',
-                          style: TextStyle(
-                            color: Theme.of(context).primaryColor,
-                            fontSize: 23,
-                          ),
-                        ),
-                      ],
-                    ),
+              Padding(
+                padding: EdgeInsets.only(
+                  top: MediaQuery.of(context).size.height / 8,
+                  left: 30,
+                ),
+                child: Text(
+                  userCoupons.length != 0 ? 'Available Coupons' : ': (',
+                  style: TextStyle(
+                    color: Theme.of(context).primaryColor,
+                    fontSize: 23,
                   ),
-                ],
+                ),
               ),
               SizedBox(
-                height: 30,
+                height: 20,
               ),
               Padding(
                 padding: EdgeInsets.only(top: 20),
                 child: Center(
                   child: CouponListCard(
-                    allRewards: myRewards,
+                    allCoupons: userCoupons,
                   ),
                 ),
               ),

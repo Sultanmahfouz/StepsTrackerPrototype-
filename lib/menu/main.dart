@@ -6,6 +6,7 @@ import 'package:steps_tracker_prototype/services/user.dart';
 
 import 'drawer.dart';
 
+// ignore: must_be_immutable
 class MainMenu extends StatelessWidget {
   List<bool> isHighlighted;
   MainMenu(this.isHighlighted);

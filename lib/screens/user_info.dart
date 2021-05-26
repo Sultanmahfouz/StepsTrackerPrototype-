@@ -5,6 +5,7 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:steps_tracker_prototype/components/constants.dart';
+import 'package:steps_tracker_prototype/screens/landing.dart';
 import 'package:steps_tracker_prototype/services/user.dart';
 import 'authentication/components/button.dart';
 
@@ -94,9 +95,12 @@ class _GetInfoState extends State<GetInfo> {
 
     if (_imageFile != null) {
       var photoUrl = await updateUserAvatar(_imageFile);
-      setState(() {
-        imageUrl = photoUrl;
-      });
+      if (mounted) {
+        // to check if the widget is in the tree
+        setState(() {
+          imageUrl = photoUrl;
+        });
+      }
     }
   }
 
@@ -186,6 +190,8 @@ class _GetInfoState extends State<GetInfo> {
                         name: name,
                         avatar: imageUrl == null ? '' : imageUrl,
                       ).updateUserData();
+                      Navigator.pushReplacement(context,
+                          MaterialPageRoute(builder: (_) => Landing()));
                     } else {
                       _showMyDialog();
                     }

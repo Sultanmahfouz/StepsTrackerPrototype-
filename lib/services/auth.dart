@@ -11,6 +11,7 @@ class AuthService {
     String password,
     String name,
     String avatar,
+    String footSteps,
   ) async {
     UserCredential result = await _auth.createUserWithEmailAndPassword(
         email: email, password: password);
@@ -19,11 +20,13 @@ class AuthService {
       uid: user.uid,
       name: name,
       avatar: avatar,
+      footSteps: footSteps,
     ).setUserData(
       UserData(
         uid: user.uid,
         name: name,
         avatar: avatar,
+        footSteps: footSteps,
       ),
     );
     return user != null
@@ -31,6 +34,7 @@ class AuthService {
             uid: user.uid,
             name: name,
             avatar: avatar,
+            footSteps: footSteps,
           )
         : null;
   }
@@ -51,6 +55,15 @@ class AuthService {
       UserCredential result = await _auth.signInAnonymously();
       User user = result.user;
       return user;
+    } catch (error) {
+      print(error.toString());
+      return null;
+    }
+  }
+
+  Future signOutUser() async {
+    try {
+      return await _auth.signOut();
     } catch (error) {
       print(error.toString());
       return null;

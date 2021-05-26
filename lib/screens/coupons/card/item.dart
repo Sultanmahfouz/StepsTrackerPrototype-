@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:fluttertoast/fluttertoast.dart';
-import 'package:steps_tracker_prototype/components/constants.dart';
 import 'package:steps_tracker_prototype/models/reward.dart';
 
 // ignore: must_be_immutable
 class CouponItemCard extends StatefulWidget {
-  Reward reward;
-  CouponItemCard({this.reward});
+  Reward coupon;
+  CouponItemCard({this.coupon});
 
   @override
   _CouponItemCardState createState() => _CouponItemCardState();
@@ -14,128 +12,91 @@ class CouponItemCard extends StatefulWidget {
 
 class _CouponItemCardState extends State<CouponItemCard> {
   int points;
-  Future<void> _showMyDialog() async {
-    return showDialog<void>(
-      context: context,
-      builder: (BuildContext context) {
-        return AlertDialog(
-          shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.all(Radius.circular(20.0))),
-          backgroundColor: Colors.white,
-          title: Text(
-            'Error',
-            style: TextStyle(color: Colors.red),
-          ),
-          content: SingleChildScrollView(
-            child: ListBody(
-              children: <Widget>[
-                Text(
-                  'You need ${points - healthPoints} more points to get this reward, take more steps to gain more points and get in shape',
-                  style: TextStyle(color: Colors.black),
-                ),
-              ],
-            ),
-          ),
-          actions: <Widget>[
-            GestureDetector(
-              child: Container(
-                height: 25,
-                width: 70,
-                decoration: BoxDecoration(
-                  color: Theme.of(context).primaryColor,
-                  borderRadius: BorderRadius.circular(10),
-                ),
-                margin: EdgeInsets.all(10),
-                child: Center(
-                  child: Text(
-                    'Noted',
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 13,
-                    ),
-                  ),
-                ),
-              ),
-              onTap: () {
-                Navigator.of(context).pop();
-              },
-            ),
-          ],
-        );
-      },
-    );
-  }
 
   @override
   // ignore: must_call_super
   void initState() {
-    points = int.parse(widget.reward.points ?? '0');
+    points = int.parse(widget.coupon.points ?? '0');
+  }
+
+  String getRewardLevel(int points) {
+    if (points < 25) {
+      return 'silver.jpeg';
+    } else if (points < 70) {
+      return 'gold.jpeg';
+    }
+    return 'platinum.jpeg';
+  }
+
+  Color getRewardColor(int points) {
+    if (points < 25) {
+      return Color(0xFFC0C0C0);
+    } else if (points < 70) {
+      return Color(0xFFFFD700);
+    }
+    return Color(0xFFe5e4e2);
   }
 
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: EdgeInsets.all(8),
-      child: GestureDetector(
-        onTap: () {
-          if (healthPoints >= points) {
-            setState(() {
-              healthPoints -= points;
-            });
-            myRewards.add(widget.reward);
-            Fluttertoast.showToast(
-              msg:
-                  'You have got the reward successfully, please find you coupon in coupon section',
-              backgroundColor: Colors.white,
-              textColor: Colors.green,
-              timeInSecForIosWeb: 5,
-            );
-          } else {
-            _showMyDialog();
-          }
-        },
-        child: Container(
-          height: 80,
-          width: MediaQuery.of(context).size.width / 1.2,
-          padding: EdgeInsets.symmetric(horizontal: 20, vertical: 12),
-          decoration: BoxDecoration(
-            color: Colors.cyan[400],
-            borderRadius: BorderRadius.circular(24),
-          ),
-          child: Row(
-            children: [
-              Container(
-                height: 60,
-                width: 60,
-                child: Image.asset('assets/images/anonymous.png'),
-                decoration: BoxDecoration(
-                    color: Colors.green,
-                    borderRadius: BorderRadius.circular(8)),
+      child: Container(
+        height: 85,
+        width: MediaQuery.of(context).size.width / 1.2,
+        padding: EdgeInsets.symmetric(horizontal: 20, vertical: 12),
+        decoration: BoxDecoration(
+          color: Theme.of(context).secondaryHeaderColor,
+          borderRadius: BorderRadius.circular(24),
+        ),
+        child: Row(
+          children: [
+            Container(
+              height: 60,
+              width: 60,
+              child: Image.asset(
+                  'assets/images/${getRewardLevel(int.parse(widget.coupon.points))}'),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(8),
               ),
-              SizedBox(
-                width: 12,
-              ),
-              Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    widget.reward.owner,
-                    style: TextStyle(color: Colors.white),
-                  ),
-                  Text(
-                    widget.reward.product,
-                    style: TextStyle(color: Colors.white),
-                  ),
-                  Text(
-                    widget.reward.coupon,
-                    style: TextStyle(color: Colors.white),
-                  ),
-                ],
-              ),
-            ],
-          ),
+            ),
+            SizedBox(
+              width: 14,
+            ),
+            Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  widget.coupon.owner,
+                ),
+                Text(
+                  widget.coupon.product,
+                ),
+                Row(
+                  children: [
+                    Icon(
+                      Icons.circle,
+                      color: getRewardColor(
+                        int.parse(widget.coupon.points),
+                      ),
+                    ),
+                    SizedBox(
+                      width: 5,
+                    ),
+                    Text(
+                      widget.coupon.points,
+                      style: TextStyle(
+                        color: getRewardColor(
+                          int.parse(widget.coupon.points),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ],
         ),
       ),
     );

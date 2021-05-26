@@ -23,6 +23,7 @@ class UserService {
       'name': name,
     });
   }
+
   // update user number of steps
   Future updateUserDataSteps(String numberOfSteps) async {
     return await FirebaseCollections().users.doc(uid).update({
@@ -44,6 +45,13 @@ class UserService {
         (DocumentSnapshot snapshot) => UserData.fromMap(snapshot.data()) ?? '');
   }
 
-  
+  List<UserData> _usersListFromSnapshot(QuerySnapshot snapshot) {
+    return snapshot.docs.map((doc) {
+      return UserData.fromMap(doc.data());
+    }).toList();
+  }
 
+  Stream<List<UserData>> getUsersFootSteps() {
+    return FirebaseCollections().users.snapshots().map(_usersListFromSnapshot);
+  }
 }

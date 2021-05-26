@@ -1,11 +1,13 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:steps_tracker_prototype/components/constants.dart';
 import 'package:steps_tracker_prototype/models/menu.dart';
+import 'package:steps_tracker_prototype/models/user.dart';
 import 'package:steps_tracker_prototype/screens/authentication/main_auth.dart';
 import 'package:steps_tracker_prototype/screens/competition/main.dart';
 import 'package:steps_tracker_prototype/screens/coupons/coupons.dart';
-import 'package:steps_tracker_prototype/screens/landing.dart';
+import 'package:steps_tracker_prototype/screens/landing/landing.dart';
 import 'package:steps_tracker_prototype/screens/rewards/main.dart';
 import 'package:steps_tracker_prototype/screens/step/step_count.dart';
 import 'package:steps_tracker_prototype/screens/settings/settings.dart';
@@ -75,21 +77,40 @@ class _MyDrawerState extends State<MyDrawer> {
 
   @override
   Widget build(BuildContext context) {
+    final user = Provider.of<UserData>(context);
+
     return Drawer(
       child: Container(
-        decoration: decorationLayout,
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+            colors: [
+              Theme.of(context).scaffoldBackgroundColor,
+              Theme.of(context).scaffoldBackgroundColor,
+              secondaryColor,
+            ],
+          ),
+        ),
         child: Column(
           children: [
             Padding(
               padding: EdgeInsets.only(top: 100, bottom: 20),
-              child: CircleAvatar(),
+              child: CircleAvatar(
+                radius: 35,
+                backgroundImage: isAnon
+                    ? AssetImage('assets/images/anonymous.png')
+                    : user?.avatar == null || user?.avatar == ''
+                        ? AssetImage('assets/images/anonymous.png')
+                        : NetworkImage(user?.avatar),
+              ),
             ),
-            Text(isAnon ? 'Guest' : 'name'),
+            Text(isAnon ? 'Guest' : user?.name ?? ''),
             isAnon
                 ? Container()
                 : Text(FirebaseAuth.instance.currentUser?.email ?? ''),
             Container(
-              height: 500,
+              height: 400,
               child: ListView.builder(
                 itemCount: menuElements.length,
                 itemBuilder: (context, index) {

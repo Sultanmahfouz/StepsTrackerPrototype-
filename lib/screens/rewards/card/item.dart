@@ -13,6 +13,7 @@ class RewardItemCard extends StatefulWidget {
 }
 
 class _RewardItemCardState extends State<RewardItemCard> {
+  int points;
   Future<void> _showMyDialog() async {
     return showDialog<void>(
       context: context,
@@ -29,7 +30,9 @@ class _RewardItemCardState extends State<RewardItemCard> {
             child: ListBody(
               children: <Widget>[
                 Text(
-                    'You need ${widget.reward.points - healthPoints} more points to get this reward, take more steps to gain more points and get in shape'),
+                  'You need ${points - healthPoints} more points to get this reward, take more steps to gain more points and get in shape',
+                  style: TextStyle(color: Colors.black),
+                ),
               ],
             ),
           ),
@@ -39,7 +42,7 @@ class _RewardItemCardState extends State<RewardItemCard> {
                 height: 25,
                 width: 70,
                 decoration: BoxDecoration(
-                  color: primaryColor,
+                  color: Theme.of(context).primaryColor,
                   borderRadius: BorderRadius.circular(10),
                 ),
                 margin: EdgeInsets.all(10),
@@ -65,15 +68,22 @@ class _RewardItemCardState extends State<RewardItemCard> {
   }
 
   @override
+  // ignore: must_call_super
+  void initState() {
+    points = int.parse(widget.reward.points ?? '0');
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Padding(
       padding: EdgeInsets.all(8),
       child: GestureDetector(
         onTap: () {
-          if (healthPoints > widget.reward.points) {
+          if (healthPoints >= points) {
             setState(() {
-              healthPoints -= widget.reward.points;
+              healthPoints -= points;
             });
+            myRewards.add(widget.reward);
             Fluttertoast.showToast(
               msg:
                   'You have got the reward successfully, please find you coupon in coupon section',
@@ -119,7 +129,7 @@ class _RewardItemCardState extends State<RewardItemCard> {
                     style: TextStyle(color: Colors.white),
                   ),
                   Text(
-                    '\$${widget.reward.priceOff.toString()}',
+                    widget.reward.points,
                     style: TextStyle(color: Colors.white),
                   ),
                 ],

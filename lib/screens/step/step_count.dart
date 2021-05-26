@@ -2,10 +2,10 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'dart:async';
 import 'package:pedometer/pedometer.dart';
-import 'package:percent_indicator/percent_indicator.dart';
 import 'package:steps_tracker_prototype/components/constants.dart';
 import 'package:steps_tracker_prototype/menu/drawer.dart';
 import 'package:steps_tracker_prototype/services/user.dart';
+import 'package:intl/intl.dart';
 
 class StepCounter extends StatefulWidget {
   @override
@@ -81,10 +81,10 @@ class _StepCounterState extends State<StepCounter> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xFF252938),
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       appBar: AppBar(
         title: Text('Steps'),
-        backgroundColor: Color(0xFF252938),
+        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
         elevation: 0,
       ),
       drawer: MyDrawer(isHighlighted),
@@ -93,51 +93,41 @@ class _StepCounterState extends State<StepCounter> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              CircularPercentIndicator(
-                animateFromLastPercent: true,
-                center: Center(
-                  child: Text(
-                    healthPoints.toString() + '  /' + '  1000',
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      color: Color(0xFF4849BF),
-                      fontSize: 25,
-                    ),
-                  ),
-                ),
-                backgroundColor: Colors.grey[300],
-                radius: 280.0,
-                progressColor: Color(0xFF4849BF),
-                percent: (1 / 1000.0) * healthPoints,
-                animation: true,
-                lineWidth: 14,
-                circularStrokeCap: CircularStrokeCap.round,
-              ),
-              SizedBox(
-                height: 10,
-              ),
               Container(
-                decoration: BoxDecoration(
-                  color: Color(0xFF282F3F),
-                  borderRadius: BorderRadius.circular(30),
-                  border: Border.all(color: Colors.white),
-                ),
-                width: 169,
                 height: 40,
                 child: Center(
                   child: Text(
                     'number of steps',
                     style: TextStyle(
-                      fontSize: 18,
-                      color: Colors.white,
+                      fontSize: 20,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
                 ),
               ),
-              Text(
-                _steps,
-                style: TextStyle(fontSize: 50, color: Colors.white),
+              SizedBox(
+                height: 20,
+              ),
+              Center(
+                child: Text(
+                  _steps,
+                  style: TextStyle(
+                    fontSize: 30,
+                    color: Theme.of(context).primaryColor,
+                  ),
+                ),
+              ),
+              SizedBox(
+                height: 10,
+              ),
+              // delete it later
+              Center(
+                child: Text(
+                  DateFormat('EEE, MMM d yyyy ').format(DateTime.now()),
+                  style: TextStyle(
+                    fontSize: 12,
+                  ),
+                ),
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,

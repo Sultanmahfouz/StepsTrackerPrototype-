@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:steps_tracker_prototype/Theme/control.dart';
 import 'package:steps_tracker_prototype/menu/main.dart';
 
 // ignore: must_be_immutable
@@ -43,7 +44,7 @@ class SettingsScreen extends StatelessWidget {
             child: Row(
               children: [
                 Expanded(child: Text('Light Mode')),
-                // ChangeThemeButtonWidget(),
+                ChangeThemeButtonWidget(),
               ],
             ),
           ),

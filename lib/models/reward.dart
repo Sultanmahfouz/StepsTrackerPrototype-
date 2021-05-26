@@ -1,20 +1,20 @@
 class Reward {
   String id;
   String owner;
-  int points;
+  String points; // parsing method will make it easy to convert in to int
   String product;
-  double priceOff;
   bool available;
   String category;
+  String coupon;
 
   Reward({
     this.id,
     this.owner,
     this.points,
     this.product,
-    this.priceOff,
     this.available,
     this.category,
+    this.coupon,
   });
 
   factory Reward.fromMap(Map data) {
@@ -22,11 +22,11 @@ class Reward {
     return Reward(
       id: data['id'] ?? '',
       owner: data['owner'] ?? '',
-      points: data['points'] ?? 0,
+      points: data['points'] ?? '',
       product: data['product'] ?? '',
-      priceOff: data['priceOff'] ?? 0.0,
       available: data['available'] ?? false,
       category: data['category'] ?? '',
+      coupon: data['coupon'] ?? '',
     );
   }
 
@@ -35,10 +35,10 @@ class Reward {
       'id': this.id,
       'owner': this.owner,
       'points': this.points,
-      'priceOff': this.priceOff,
       'product': this.product,
       'available': this.available,
       'category': this.category,
+      'coupon': this.coupon,
     };
   }
 }

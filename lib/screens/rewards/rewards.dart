@@ -18,7 +18,7 @@ class Rewards extends StatefulWidget {
 }
 
 class _RewardsState extends State<Rewards> {
-  List<bool> isHighlighted = [false, true, false, false, false];
+  List<bool> isHighlighted = [false, false, true, false, false, false];
 
   String currentCategory = 'All Rewards';
   String selectedCategory;

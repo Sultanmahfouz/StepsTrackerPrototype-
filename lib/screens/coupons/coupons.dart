@@ -13,7 +13,7 @@ class Coupons extends StatefulWidget {
 }
 
 class _CouponsState extends State<Coupons> {
-  List<bool> isHighlighted = [false, false, false, true, false];
+  List<bool> isHighlighted = [false, false, false, false, true, false];
 
   @override
   Widget build(BuildContext context) {

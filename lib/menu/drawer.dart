@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:steps_tracker_prototype/components/constants.dart';
 import 'package:steps_tracker_prototype/models/menu.dart';
 import 'package:steps_tracker_prototype/screens/authentication/main_auth.dart';
+import 'package:steps_tracker_prototype/screens/competition/main.dart';
 import 'package:steps_tracker_prototype/screens/coupons/coupons.dart';
 import 'package:steps_tracker_prototype/screens/landing.dart';
 import 'package:steps_tracker_prototype/screens/rewards/main.dart';
@@ -22,6 +23,7 @@ class MyDrawer extends StatefulWidget {
 class _MyDrawerState extends State<MyDrawer> {
   List<Widget> widgets = [
     Landing(),
+    MainCompetition(),
     MainReward(),
     StepCounter(),
     Coupons(),
@@ -35,6 +37,12 @@ class _MyDrawerState extends State<MyDrawer> {
         color: Colors.white,
       ),
     ),
+    MenuElement(
+        title: 'Competition',
+        icon: Icon(
+          Icons.directions_walk_rounded,
+          color: Colors.white,
+        )),
     MenuElement(
       title: 'Rewards',
       icon: Icon(

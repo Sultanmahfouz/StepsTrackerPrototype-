@@ -22,7 +22,7 @@ class _StepCounterState extends State<StepCounter> {
   int totalPoints = 0;
   bool isHealthPoint = false;
   bool exchangePointsOccured = false;
-  List<bool> isHighlighted = [false, false, true, false, false];
+  List<bool> isHighlighted = [false, false, false, true, false, false];
 
   @override
   void initState() {

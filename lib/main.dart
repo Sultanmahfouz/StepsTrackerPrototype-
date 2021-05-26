@@ -31,27 +31,30 @@ class _MyAppState extends State<MyApp> {
       create: (context) => ThemeProvider(),
       builder: (context, _) {
         final themeProvider = Provider.of<ThemeProvider>(context);
-        return StreamProvider<UserData>.value(
-          value: UserService().user,
-          child: StreamProvider<List<Reward>>.value(
-            value: RewardsService().getAvailableRewards(),
-            child: MaterialApp(
-              debugShowCheckedModeBanner: false,
-              themeMode: themeProvider.themeMode,
-              theme: MyTheme.lightTheme,
-              darkTheme: MyTheme.darkTheme,
-              initialRoute: FirebaseAuth.instance.currentUser?.uid == null ||
-                      FirebaseAuth.instance.currentUser?.isAnonymous == true
-                  ? MainAuthendication.id
-                  : StartApp.id,
-              routes: {
-                MainAuthendication.id: (context) => MainAuthendication(),
-                Login.id: (context) => Login(),
-                StartApp.id: (context) => StartApp(),
-              },
-              home: FirebaseAuth.instance.currentUser?.uid == null
-                  ? MainAuthendication()
-                  : StartApp(),
+        return StreamProvider<List<UserData>>.value(
+          value: UserService().getUsersFootSteps(),
+          child: StreamProvider<UserData>.value(
+            value: UserService().user,
+            child: StreamProvider<List<Reward>>.value(
+              value: RewardsService().getAvailableRewards(),
+              child: MaterialApp(
+                debugShowCheckedModeBanner: false,
+                themeMode: themeProvider.themeMode,
+                theme: MyTheme.lightTheme,
+                darkTheme: MyTheme.darkTheme,
+                initialRoute: FirebaseAuth.instance.currentUser?.uid == null ||
+                        FirebaseAuth.instance.currentUser?.isAnonymous == true
+                    ? MainAuthendication.id
+                    : StartApp.id,
+                routes: {
+                  MainAuthendication.id: (context) => MainAuthendication(),
+                  Login.id: (context) => Login(),
+                  StartApp.id: (context) => StartApp(),
+                },
+                home: FirebaseAuth.instance.currentUser?.uid == null
+                    ? MainAuthendication()
+                    : StartApp(),
+              ),
             ),
           ),
         );

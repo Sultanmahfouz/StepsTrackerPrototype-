@@ -11,22 +11,25 @@ class StartApp extends StatelessWidget {
   static String id = 'start_screen';
   @override
   Widget build(BuildContext context) {
-    return StreamProvider<UserData>.value(
-      value:
-          UserService().getUserDocument(FirebaseAuth.instance.currentUser?.uid),
-      child: ChangeNotifierProvider(
-        create: (context) => ThemeProvider(),
-        builder: (context, _) {
-          final themeProvider = Provider.of<ThemeProvider>(context);
+    return StreamProvider<List<UserData>>.value(
+      value: UserService().getUsersFootSteps(),
+      child: StreamProvider<UserData>.value(
+        value: UserService()
+            .getUserDocument(FirebaseAuth.instance.currentUser?.uid),
+        child: ChangeNotifierProvider(
+          create: (context) => ThemeProvider(),
+          builder: (context, _) {
+            final themeProvider = Provider.of<ThemeProvider>(context);
 
-          return MaterialApp(
-            debugShowCheckedModeBanner: false,
-            themeMode: themeProvider.themeMode,
-            theme: MyTheme.lightTheme,
-            darkTheme: MyTheme.darkTheme,
-            home: Landing(),
-          );
-        },
+            return MaterialApp(
+              debugShowCheckedModeBanner: false,
+              themeMode: themeProvider.themeMode,
+              theme: MyTheme.lightTheme,
+              darkTheme: MyTheme.darkTheme,
+              home: Landing(),
+            );
+          },
+        ),
       ),
     );
   }

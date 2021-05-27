@@ -10,32 +10,48 @@ class SettingsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        iconTheme: IconThemeData(color: Colors.white),
+        iconTheme: Theme.of(context).iconTheme,
+        title: Text(
+          'Settings',
+          style: TextStyle(
+            color: Theme.of(context).primaryColor,
+          ),
+        ),
         excludeHeaderSemantics: true,
-        backgroundColor: Color(0xFF5D82DB),
+        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
         elevation: 0,
+        leading: Builder(
+          builder: (context) {
+            return IconButton(
+              icon: Icon(
+                Icons.menu,
+              ),
+              onPressed: () => Scaffold.of(context).openDrawer(),
+            );
+          },
+        ),
       ),
       drawer: MainMenu(isHighlighted),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Padding(
-            padding: EdgeInsets.only(top: 100.0, left: 40),
+            padding: EdgeInsets.only(top: 60.0, left: 40),
             child: Text(
-              'Settings',
+              'Display',
               style: TextStyle(
-                color: Color(0xFF5D82DB),
-                fontSize: 25,
+                color: Theme.of(context).primaryColor,
+                fontSize: 18,
               ),
             ),
           ),
           SizedBox(
-            height: 30,
+            height: 5,
           ),
           Container(
-            padding: EdgeInsets.symmetric(vertical: 30, horizontal: 20),
+            padding: EdgeInsets.symmetric(horizontal: 20),
             margin: EdgeInsets.symmetric(vertical: 20, horizontal: 30),
-            height: 75,
+            height: 50,
             width: 300,
             decoration: BoxDecoration(
               color: Theme.of(context).primaryColor,
@@ -43,7 +59,16 @@ class SettingsScreen extends StatelessWidget {
             ),
             child: Row(
               children: [
-                Expanded(child: Text('Light Mode')),
+                Expanded(
+                  child: Text(
+                    'Dark Mode',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold,
+                      letterSpacing: 1.5,
+                    ),
+                  ),
+                ),
                 ChangeThemeButtonWidget(),
               ],
             ),

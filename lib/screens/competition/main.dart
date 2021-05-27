@@ -8,6 +8,7 @@ class MainCompetition extends StatelessWidget {
   Widget build(BuildContext context) {
     final allUsers = Provider.of<List<UserData>>(context);
     return Scaffold(
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       body: Competitions(
         allUsers: allUsers,
       ),

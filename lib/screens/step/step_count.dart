@@ -83,7 +83,13 @@ class _StepCounterState extends State<StepCounter> {
     return Scaffold(
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       appBar: AppBar(
-        title: Text('Steps'),
+        iconTheme: Theme.of(context).iconTheme,
+        title: Text(
+          'Steps',
+          style: TextStyle(
+            color: Theme.of(context).primaryColor,
+          ),
+        ),
         backgroundColor: Theme.of(context).scaffoldBackgroundColor,
         elevation: 0,
       ),

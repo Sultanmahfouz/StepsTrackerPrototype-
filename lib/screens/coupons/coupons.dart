@@ -20,9 +20,15 @@ class _CouponsState extends State<Coupons> {
     return Scaffold(
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       appBar: AppBar(
+        iconTheme: Theme.of(context).iconTheme,
         elevation: 0,
         backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-        title: Text('Coupons'),
+        title: Text(
+          'Coupons',
+          style: TextStyle(
+            color: Theme.of(context).primaryColor,
+          ),
+        ),
       ),
       drawer: MyDrawer(isHighlighted),
       body: SingleChildScrollView(

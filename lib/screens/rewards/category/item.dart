@@ -25,9 +25,9 @@ class CategoryItemReward extends StatelessWidget {
             child: Text(
               title,
               style: TextStyle(
-                color: isActive ? Colors.black : Colors.white,
-                fontWeight: isActive ? FontWeight.bold : FontWeight.normal,
-                fontSize: 13,
+                color: isActive ? Colors.white : Theme.of(context).primaryColor,
+                fontWeight: FontWeight.bold,
+                fontSize: 14,
               ),
             ),
           ),

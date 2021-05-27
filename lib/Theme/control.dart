@@ -13,6 +13,8 @@ class ChangeThemeButtonWidget extends StatelessWidget {
         final provider = Provider.of<ThemeProvider>(context, listen: false);
         provider.toggleTheme(value);
       },
+      activeColor: Theme.of(context).scaffoldBackgroundColor,
+      inactiveTrackColor: Colors.grey,
     );
   }
 }

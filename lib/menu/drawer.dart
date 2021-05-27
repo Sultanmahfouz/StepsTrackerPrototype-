@@ -36,41 +36,35 @@ class _MyDrawerState extends State<MyDrawer> {
       title: 'Home',
       icon: Icon(
         Icons.person,
-        color: Colors.white,
       ),
     ),
     MenuElement(
         title: 'Competition',
         icon: Icon(
           Icons.directions_walk_rounded,
-          color: Colors.white,
         )),
     MenuElement(
       title: 'Rewards',
       icon: Icon(
         Icons.card_giftcard_sharp,
-        color: Colors.white,
       ),
     ),
     MenuElement(
       title: 'Steps',
       icon: Icon(
         Icons.directions_walk_outlined,
-        color: Colors.white,
       ),
     ),
     MenuElement(
       title: 'Coupons',
       icon: Icon(
         Icons.code,
-        color: Colors.white,
       ),
     ),
     MenuElement(
       title: 'Settings',
       icon: Icon(
         Icons.settings,
-        color: Colors.white,
       ),
     ),
   ];
@@ -105,7 +99,12 @@ class _MyDrawerState extends State<MyDrawer> {
                         : NetworkImage(user?.avatar),
               ),
             ),
-            Text(isAnon ? 'Guest' : user?.name ?? ''),
+            Text(
+              isAnon ? 'Guest' : user?.name ?? '',
+              style: TextStyle(
+                fontSize: 16,
+              ),
+            ),
             isAnon
                 ? Container()
                 : Text(FirebaseAuth.instance.currentUser?.email ?? ''),
@@ -143,7 +142,7 @@ class _MyDrawerState extends State<MyDrawer> {
                     child: Container(
                       decoration: widget.isHighlighted[index]
                           ? BoxDecoration(
-                              color: Colors.green,
+                              color: Theme.of(context).primaryColor,
                               borderRadius: BorderRadius.circular(20))
                           : null,
                       child: ListTile(
@@ -153,7 +152,6 @@ class _MyDrawerState extends State<MyDrawer> {
                           menuElements[index].title,
                           style: TextStyle(
                             fontSize: 16,
-                            color: Colors.white,
                           ),
                         ),
                       ),

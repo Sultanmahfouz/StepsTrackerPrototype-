@@ -1,6 +1,3 @@
-import 'dart:async';
-
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:steps_tracker_prototype/components/constants.dart';
@@ -29,8 +26,15 @@ class _LandingState extends State<Landing> {
     if (user != null) {
       username = user.name ?? 'guest';
       return Scaffold(
+        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
         appBar: AppBar(
-          title: Text('Healthy'),
+          iconTheme: Theme.of(context).iconTheme,
+          title: Text(
+            'Healthy',
+            style: TextStyle(
+              color: Theme.of(context).primaryColor,
+            ),
+          ),
           elevation: 0,
           backgroundColor: Theme.of(context).scaffoldBackgroundColor,
         ),
@@ -134,7 +138,8 @@ class _LandingState extends State<Landing> {
                     child: Text(
                       'START',
                       style: TextStyle(
-                        letterSpacing: 2.0,
+                        color: Colors.white,
+                        letterSpacing: 1.5,
                         fontWeight: FontWeight.bold,
                         fontSize: 18,
                       ),

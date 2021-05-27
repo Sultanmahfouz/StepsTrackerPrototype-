@@ -48,6 +48,13 @@ class _CouponItemCardState extends State<CouponItemCard> {
         decoration: BoxDecoration(
           color: Theme.of(context).secondaryHeaderColor,
           borderRadius: BorderRadius.circular(24),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.grey.withOpacity(0.3),
+              spreadRadius: 1,
+              offset: Offset(0, 3),
+            ),
+          ],
         ),
         child: Row(
           children: [
@@ -64,35 +71,21 @@ class _CouponItemCardState extends State<CouponItemCard> {
               width: 14,
             ),
             Column(
-              mainAxisAlignment: MainAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
                   widget.coupon.owner,
+                  style: TextStyle(
+                    fontSize: 15,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
                 Text(
                   widget.coupon.product,
                 ),
-                Row(
-                  children: [
-                    Icon(
-                      Icons.circle,
-                      color: getRewardColor(
-                        int.parse(widget.coupon.points),
-                      ),
-                    ),
-                    SizedBox(
-                      width: 5,
-                    ),
-                    Text(
-                      widget.coupon.points,
-                      style: TextStyle(
-                        color: getRewardColor(
-                          int.parse(widget.coupon.points),
-                        ),
-                      ),
-                    ),
-                  ],
+                Text(
+                  widget.coupon.coupon,
                 ),
               ],
             ),

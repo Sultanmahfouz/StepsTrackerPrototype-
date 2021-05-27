@@ -104,8 +104,7 @@ class _RewardItemCardState extends State<RewardItemCard> {
             userCoupons.add(widget.reward);
             Fluttertoast.showToast(
               msg:
-                  'You have got the reward successfully, please find you coupon in coupon section',
-              backgroundColor: Colors.white,
+                  'You have redeemed the reward successfully, please find your coupon in the coupon section',
               textColor: Colors.green,
               timeInSecForIosWeb: 5,
             );
@@ -116,10 +115,17 @@ class _RewardItemCardState extends State<RewardItemCard> {
         child: Container(
           height: 85,
           width: MediaQuery.of(context).size.width / 1.2,
-          padding: EdgeInsets.symmetric(horizontal: 20, vertical: 12),
+          padding: EdgeInsets.symmetric(horizontal: 20, vertical: 8),
           decoration: BoxDecoration(
             color: Theme.of(context).secondaryHeaderColor,
             borderRadius: BorderRadius.circular(24),
+            boxShadow: [
+              BoxShadow(
+                color: Colors.grey.withOpacity(0.3),
+                spreadRadius: 1,
+                offset: Offset(0, 3),
+              ),
+            ],
           ),
           child: Row(
             children: [
@@ -136,7 +142,7 @@ class _RewardItemCardState extends State<RewardItemCard> {
                 width: 14,
               ),
               Column(
-                mainAxisAlignment: MainAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
@@ -154,15 +160,10 @@ class _RewardItemCardState extends State<RewardItemCard> {
                         ),
                       ),
                       SizedBox(
-                        width: 5,
+                        width: 3,
                       ),
                       Text(
                         widget.reward.points,
-                        style: TextStyle(
-                          color: getRewardColor(
-                            int.parse(widget.reward.points),
-                          ),
-                        ),
                       ),
                     ],
                   ),

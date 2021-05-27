@@ -21,7 +21,7 @@ class Rewards extends StatefulWidget {
 class _RewardsState extends State<Rewards> {
   List<bool> isHighlighted = [false, false, true, false, false, false];
 
-  String currentCategory = 'All Rewards';
+  String currentCategory = 'All';
   String selectedCategory;
   List<Reward> allRewards = [
     Reward(
@@ -52,7 +52,7 @@ class _RewardsState extends State<Rewards> {
   List<Reward> currentRewards = [];
   void categoryListCallBack(String category) {
     currentRewards.clear();
-    if (category == 'All Rewards') {
+    if (category == 'All') {
       currentRewards.addAll(widget.allAvailableRewards);
     } else if (category == 'Watches') {
       currentRewards = widget.allAvailableRewards
@@ -92,13 +92,20 @@ class _RewardsState extends State<Rewards> {
     return Scaffold(
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       appBar: AppBar(
+        iconTheme: Theme.of(context).iconTheme,
         elevation: 0,
         backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-        title: Text('Rewards'),
+        title: Text(
+          'Rewards',
+          style: TextStyle(
+            color: Theme.of(context).primaryColor,
+          ),
+        ),
       ),
       drawer: MyDrawer(isHighlighted),
       body: SingleChildScrollView(
         child: Container(
+          color: Theme.of(context).scaffoldBackgroundColor,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -114,6 +121,8 @@ class _RewardsState extends State<Rewards> {
                         Text(
                           'Health Points',
                           style: TextStyle(
+                            color: Theme.of(context).primaryColor,
+                            fontWeight: FontWeight.bold,
                             fontSize: 15,
                           ),
                         ),
@@ -130,7 +139,7 @@ class _RewardsState extends State<Rewards> {
                         ),
                       ],
                     ),
-                    backgroundColor: Colors.grey[700],
+                    backgroundColor: Colors.grey[500],
                     radius: 200.0,
                     progressColor: Theme.of(context).primaryColor,
                     percent: (1 / 1000.0) * healthPoints,
@@ -156,7 +165,7 @@ class _RewardsState extends State<Rewards> {
                 height: 30,
               ),
               CategoryListRewards(
-                firstCategory: 'All Rewards',
+                firstCategory: 'All',
                 secondCategory: 'Watches',
                 thirdCategory: 'Perfumes',
                 fourthCategory: 'Toys',

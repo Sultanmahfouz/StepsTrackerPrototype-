@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:steps_tracker_prototype/components/constants.dart';
 import 'package:steps_tracker_prototype/menu/drawer.dart';
 import 'package:steps_tracker_prototype/models/user.dart';
+import 'package:steps_tracker_prototype/screens/competition/card/list.dart';
 
 // ignore: must_be_immutable
 class Competitions extends StatefulWidget {
@@ -30,11 +30,16 @@ class _CompetitionsState extends State<Competitions> {
     }
 
     return Scaffold(
-      backgroundColor: Theme.of(context).primaryColor,
       appBar: AppBar(
+        iconTheme: Theme.of(context).iconTheme,
         elevation: 0,
-        backgroundColor: primaryColor,
-        title: Text('Competition'),
+        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+        title: Text(
+          'Competition',
+          style: TextStyle(
+            color: Theme.of(context).primaryColor,
+          ),
+        ),
       ),
       drawer: MyDrawer(isHighlighted),
       body: SingleChildScrollView(
@@ -64,42 +69,12 @@ class _CompetitionsState extends State<Competitions> {
                   ),
                 ],
               ),
-              SizedBox(
-                height: 30,
-              ),
               widget.allUsers?.length != null
                   ? widget.allUsers.length != 0
                       ? Padding(
-                          padding: EdgeInsets.only(top: 20),
-                          child: Center(
-                            child: SingleChildScrollView(
-                              scrollDirection: Axis.vertical,
-                              child: SingleChildScrollView(
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Column(
-                                      children: List.generate(
-                                        widget.allUsers.length,
-                                        (index) {
-                                          return Text(currentUsers[index].name);
-                                        },
-                                      ),
-                                    ),
-                                    SizedBox(width: 200),
-                                    Column(
-                                      children: List.generate(
-                                        currentUsers.length,
-                                        (index) {
-                                          return Text(
-                                              currentUsers[index].footSteps);
-                                        },
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ),
+                          padding: EdgeInsets.only(top: 40),
+                          child: RankingListCard(
+                            allUsers: currentUsers.reversed.toList(),
                           ),
                         )
                       : Container(

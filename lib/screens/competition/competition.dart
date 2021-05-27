@@ -25,8 +25,8 @@ class _CompetitionsState extends State<Competitions> {
       print(widget.allUsers);
       currentUsers.addAll(widget.allUsers);
 
-      currentUsers.sort((a, b) =>
-          int.parse(a.footSteps).compareTo(int.parse(b.footSteps ?? '0')));
+      currentUsers.sort(
+          (a, b) => int.parse(a.footSteps).compareTo(int.parse(b.footSteps)));
     }
 
     return Scaffold(
@@ -53,7 +53,7 @@ class _CompetitionsState extends State<Competitions> {
                     child: Row(
                       children: [
                         Text(
-                          'Competitiors',
+                          'Rankings',
                           style: TextStyle(
                             color: Theme.of(context).primaryColor,
                             fontSize: 23,
@@ -103,10 +103,10 @@ class _CompetitionsState extends State<Competitions> {
                           ),
                         )
                       : Container(
-                          child: Text('length = 0 !'),
+                          child: Text('No competitors !'),
                         )
                   : Container(
-                      child: Text('null !'),
+                      child: Text('Not available !'),
                     )
             ],
           ),

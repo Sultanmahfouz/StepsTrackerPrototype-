@@ -121,7 +121,7 @@ class _RegisterationState extends State<Registeration> {
                           password,
                           '', // name and image are not required from the user at this stage
                           '',
-                          '',
+                          '0',
                         );
                         if (result == null) {
                           setState(() {

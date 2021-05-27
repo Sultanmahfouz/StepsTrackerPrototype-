@@ -42,8 +42,7 @@ class _MyAppState extends State<MyApp> {
                 themeMode: themeProvider.themeMode,
                 theme: MyTheme.lightTheme,
                 darkTheme: MyTheme.darkTheme,
-                initialRoute: FirebaseAuth.instance.currentUser?.uid == null ||
-                        FirebaseAuth.instance.currentUser?.isAnonymous == true
+                initialRoute: FirebaseAuth.instance.currentUser?.uid == null
                     ? MainAuthendication.id
                     : StartApp.id,
                 routes: {

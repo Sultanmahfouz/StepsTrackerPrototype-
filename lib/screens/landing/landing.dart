@@ -1,3 +1,6 @@
+import 'dart:async';
+
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:steps_tracker_prototype/components/constants.dart';
@@ -15,18 +18,16 @@ class _LandingState extends State<Landing> {
   String username;
 
   @override
+  void initState() {
+    username = 'guest';
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     final user = Provider.of<UserData>(context);
     if (user != null) {
-      setState(() {
-        if (user?.name == null || user?.name == '') {
-          print(user);
-
-          username = 'guest';
-        } else {
-          username = user.name;
-        }
-      });
+      username = user.name ?? 'guest';
       return Scaffold(
         appBar: AppBar(
           title: Text('Healthy'),
@@ -148,7 +149,7 @@ class _LandingState extends State<Landing> {
     } else {
       return Scaffold(
         body: Container(
-          child: CircularProgressIndicator(),
+          child: Center(),
         ),
       );
     }

@@ -158,7 +158,6 @@ class _MainAuthendicationState extends State<MainAuthendication> {
                   child: Text(
                     'Join as a guest',
                     style: TextStyle(
-                      color: Colors.white,
                       fontSize: 16,
                       decoration: TextDecoration.underline,
                     ),

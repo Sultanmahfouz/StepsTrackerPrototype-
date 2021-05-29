@@ -22,7 +22,7 @@ class _CompetitionsState extends State<Competitions> {
   @override
   Widget build(BuildContext context) {
     if (widget.allUsers != null && widget.allUsers?.length != 0) {
-      print(widget.allUsers);
+      currentUsers.clear();
       currentUsers.addAll(widget.allUsers);
 
       currentUsers.sort(

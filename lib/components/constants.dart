@@ -36,6 +36,7 @@ var fieldDecoration = InputDecoration(
 );
 
 int allStepsTaken = 0;
+
 int healthPoints = 30;
 
 bool isAnon = false;

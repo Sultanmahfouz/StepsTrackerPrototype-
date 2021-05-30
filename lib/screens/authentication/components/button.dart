@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:steps_tracker_prototype/components/constants.dart';
 
 // ignore: must_be_immutable
 class AuthButton extends StatelessWidget {

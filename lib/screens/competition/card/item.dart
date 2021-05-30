@@ -34,7 +34,6 @@ class _RankingItemCardState extends State<RankingItemCard> {
 
   @override
   Widget build(BuildContext context) {
-    print(widget.index);
     return Center(
       child: Padding(
         padding: EdgeInsets.symmetric(vertical: 8),

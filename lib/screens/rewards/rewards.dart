@@ -84,7 +84,9 @@ class _RewardsState extends State<Rewards> {
   }
 
   Future<void> showHealthPoints() async {
-    Timer.periodic(Duration(seconds: 2), (timer) {});
+    Timer.periodic(Duration(milliseconds: 100), (timer) {
+      setState(() {});
+    });
   }
 
   @override

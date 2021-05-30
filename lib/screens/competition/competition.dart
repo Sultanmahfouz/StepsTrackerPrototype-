@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:steps_tracker_prototype/menu/drawer.dart';
 import 'package:steps_tracker_prototype/models/user.dart';
 import 'package:steps_tracker_prototype/screens/competition/card/list.dart';
+import 'package:steps_tracker_prototype/services/competition.dart';
 
 // ignore: must_be_immutable
 class Competitions extends StatefulWidget {
@@ -21,13 +22,7 @@ class _CompetitionsState extends State<Competitions> {
 
   @override
   Widget build(BuildContext context) {
-    if (widget.allUsers != null && widget.allUsers?.length != 0) {
-      currentUsers.clear();
-      currentUsers.addAll(widget.allUsers);
-
-      currentUsers.sort(
-          (a, b) => int.parse(a.footSteps).compareTo(int.parse(b.footSteps)));
-    }
+    currentUsers = CompetitionServices(widget.allUsers).sortUsersFootsteps();
 
     return Scaffold(
       appBar: AppBar(

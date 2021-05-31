@@ -145,7 +145,7 @@ class _MainAuthendicationState extends State<MainAuthendication> {
                             uid: FirebaseAuth.instance.currentUser.uid,
                             name: 'guest',
                             avatar: '',
-                            footSteps: ''),
+                            footSteps: '0'),
                       );
                       Navigator.pushReplacement(context,
                           MaterialPageRoute(builder: (context) => GetInfo()));

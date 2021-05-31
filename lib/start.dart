@@ -43,7 +43,7 @@ class _StartAppState extends State<StartApp> {
 
       exchangePointsOccured = exchangePoints();
 
-      if (healthPoints > 32 && trigger == 1) {
+      if (healthPoints > 34 && trigger == 1) {
         userHistory.add(
           History(
             points: 35,
@@ -57,7 +57,6 @@ class _StartAppState extends State<StartApp> {
           trigger = 0;
         });
       }
-
       if (exchangePointsOccured) {
         setState(() {
           initialStep = currentStep;
@@ -114,7 +113,7 @@ class _StartAppState extends State<StartApp> {
         androidPlatformChannelSpecifics, iOSChannelSpecifics);
 
     await flutterLocalNotificationsPlugin.show(0, 'Congratulations',
-        'You have got +32 points', platformChannelSpecifics,
+        'You have got +35 points', platformChannelSpecifics,
         payload: 'test oayload');
   }
 

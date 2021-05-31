@@ -21,9 +21,9 @@ class RewardsService {
   }
 
   String getRewardLevel(int points) {
-    if (points < 25) {
+    if (points < 100) {
       return 'silver.jpeg';
-    } else if (points < 70) {
+    } else if (points < 200) {
       return 'gold.jpeg';
     }
     return 'platinum.jpeg';

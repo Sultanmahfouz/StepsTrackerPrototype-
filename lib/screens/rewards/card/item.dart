@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:steps_tracker_prototype/components/constants.dart';
 import 'package:steps_tracker_prototype/components/messages.dart';
+import 'package:steps_tracker_prototype/models/history.dart';
 import 'package:steps_tracker_prototype/models/reward.dart';
+import 'package:steps_tracker_prototype/screens/history/history.dart';
 import 'package:steps_tracker_prototype/services/reward.dart';
 
 // ignore: must_be_immutable
@@ -98,6 +100,13 @@ class _RewardItemCardState extends State<RewardItemCard> {
                     healthPoints -= points;
                   });
                   userCoupons.add(widget.reward);
+                  userHistory.add(
+                    History(
+                        points: points ?? 0,
+                        exchangeDate: DateTime.now(),
+                        owner: widget.reward.owner ?? '',
+                        kind: 'redeem'),
+                  );
                   Fluttertoast.showToast(
                     msg:
                         'You have redeemed the reward successfully, please find your coupon in the coupon section',

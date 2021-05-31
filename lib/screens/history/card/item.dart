@@ -31,48 +31,51 @@ class _HistoryItemCardState extends State<HistoryItemCard> {
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: Container(
-        height: 80,
-        width: MediaQuery.of(context).size.width / 1.1,
-        padding: EdgeInsets.symmetric(horizontal: 10, vertical: 6),
-        decoration: BoxDecoration(
-          color: Theme.of(context).secondaryHeaderColor,
-          borderRadius: BorderRadius.circular(20),
-          boxShadow: [
-            BoxShadow(
-              color: Colors.grey.withOpacity(0.3),
-              spreadRadius: 1,
-              offset: Offset(0, 3),
-            ),
-          ],
-        ),
-        child: Row(
-          children: [
-            Column(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  widget.history.owner ?? '',
-                ),
-                Container(
-                  width: 300,
-                  height: 40,
-                  child: Text(
-                    message,
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontStyle: FontStyle.italic,
-                      color: widget.history.kind == 'redeem'
-                          ? Colors.redAccent
-                          : Colors.green,
+      child: Padding(
+        padding: EdgeInsets.symmetric(vertical: 10),
+        child: Container(
+          height: 80,
+          width: MediaQuery.of(context).size.width / 1.1,
+          padding: EdgeInsets.symmetric(horizontal: 10, vertical: 6),
+          decoration: BoxDecoration(
+            color: Theme.of(context).secondaryHeaderColor,
+            borderRadius: BorderRadius.circular(20),
+            boxShadow: [
+              BoxShadow(
+                color: Colors.grey.withOpacity(0.3),
+                spreadRadius: 1,
+                offset: Offset(0, 3),
+              ),
+            ],
+          ),
+          child: Row(
+            children: [
+              Column(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    widget.history.owner ?? '',
+                  ),
+                  Container(
+                    width: 300,
+                    height: 40,
+                    child: Text(
+                      message,
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontStyle: FontStyle.italic,
+                        color: widget.history.kind == 'redeem'
+                            ? Colors.redAccent
+                            : Colors.green,
+                      ),
                     ),
                   ),
-                ),
-              ],
-            ),
-          ],
+                ],
+              ),
+            ],
+          ),
         ),
       ),
     );

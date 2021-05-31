@@ -1,5 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:pedometer/pedometer.dart';
 import 'package:provider/provider.dart';
 import 'package:steps_tracker_prototype/screens/landing/landing.dart';
@@ -25,12 +27,7 @@ class _StartAppState extends State<StartApp> {
   int initialStep = 0;
   bool isHealthPoint = false;
   bool exchangePointsOccured = false;
-
-  @override
-  void initState() {
-    super.initState();
-    initPlatformState();
-  }
+  int trigger = 1;
 
   void onStepCount(StepCount event) {
     setState(() {
@@ -45,6 +42,13 @@ class _StartAppState extends State<StartApp> {
           .updateUserDataSteps(currentStep.toString());
 
       exchangePointsOccured = exchangePoints();
+
+      if (healthPoints > 50 && trigger == 1) {
+        _showNotification();
+        setState(() {
+          trigger = 0;
+        });
+      }
 
       if (exchangePointsOccured) {
         setState(() {
@@ -79,6 +83,79 @@ class _StartAppState extends State<StartApp> {
     _stepCountStream.listen(onStepCount).onError(onStepCountError);
 
     if (!mounted) return;
+  }
+
+  FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
+      new FlutterLocalNotificationsPlugin();
+
+  InitializationSettings initilizationSettings;
+
+  void _showNotification() async {
+    await _demoNotification();
+  }
+
+  Future<void> _demoNotification() async {
+    var androidPlatformChannelSpecifics = AndroidNotificationDetails(
+        'channel_ID', 'channel name', 'channel description',
+        importance: Importance.Max,
+        priority: Priority.High,
+        ticker: 'test ticker');
+
+    var iOSChannelSpecifics = IOSNotificationDetails();
+    var platformChannelSpecifics = NotificationDetails(
+        androidPlatformChannelSpecifics, iOSChannelSpecifics);
+
+    await flutterLocalNotificationsPlugin.show(0, 'Congratulations',
+        'You have got +50 points', platformChannelSpecifics,
+        payload: 'test oayload');
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    initPlatformState();
+    var initilizationSettingsAndroid =
+        new AndroidInitializationSettings('@mipmap/ic_launcher');
+    var initilizationSettingsIOS = new IOSInitializationSettings(
+        requestAlertPermission: true,
+        requestBadgePermission: true,
+        requestSoundPermission: true,
+        onDidReceiveLocalNotification: onDidReceiveLocalNotification);
+    initilizationSettings = new InitializationSettings(
+      initilizationSettingsAndroid,
+      initilizationSettingsIOS,
+    );
+    flutterLocalNotificationsPlugin.initialize(initilizationSettings,
+        onSelectNotification: onSelectNotification);
+  }
+
+  Future onSelectNotification(String payload) async {
+    if (payload != null) {
+      debugPrint('Notification payload: $payload');
+    }
+    await Navigator.push(context,
+        new MaterialPageRoute(builder: (context) => new SecondRoute()));
+  }
+
+  Future onDidReceiveLocalNotification(
+      int id, String title, String body, String payload) async {
+    await showDialog(
+        context: context,
+        builder: (BuildContext context) => CupertinoAlertDialog(
+              title: Text(title),
+              content: Text(body),
+              actions: <Widget>[
+                CupertinoDialogAction(
+                  isDefaultAction: true,
+                  child: Text('Ok'),
+                  onPressed: () async {
+                    Navigator.of(context, rootNavigator: true).pop();
+                    await Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => SecondRoute()));
+                  },
+                )
+              ],
+            ));
   }
 
   @override

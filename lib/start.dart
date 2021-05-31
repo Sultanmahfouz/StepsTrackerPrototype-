@@ -44,8 +44,8 @@ class _StartAppState extends State<StartApp> {
 
       exchangePointsOccured = exchangePoints();
 
-      if (healthPoints > 35 && trigger == 1) {
-        _showNotification();
+      if (healthPoints > 32 && trigger == 1) {
+        showNotification();
         userHistory.add(
           History(
             points: 35,
@@ -99,11 +99,11 @@ class _StartAppState extends State<StartApp> {
 
   InitializationSettings initilizationSettings;
 
-  void _showNotification() async {
-    await _demoNotification();
+  void showNotification() async {
+    await demoNotification();
   }
 
-  Future<void> _demoNotification() async {
+  Future<void> demoNotification() async {
     var androidPlatformChannelSpecifics = AndroidNotificationDetails(
         'channel_ID', 'channel name', 'channel description',
         importance: Importance.Max,

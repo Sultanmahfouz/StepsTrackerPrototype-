@@ -8,7 +8,6 @@ import 'package:steps_tracker_prototype/models/history.dart';
 import 'package:steps_tracker_prototype/screens/landing/landing.dart';
 import 'package:steps_tracker_prototype/services/step.dart';
 import 'package:steps_tracker_prototype/services/user.dart';
-
 import 'Theme/theme_provider.dart';
 import 'components/constants.dart';
 import 'models/user.dart';
@@ -45,7 +44,6 @@ class _StartAppState extends State<StartApp> {
       exchangePointsOccured = exchangePoints();
 
       if (healthPoints > 32 && trigger == 1) {
-        showNotification();
         userHistory.add(
           History(
             points: 35,
@@ -55,6 +53,7 @@ class _StartAppState extends State<StartApp> {
           ),
         );
         setState(() {
+          showNotification();
           trigger = 0;
         });
       }
@@ -115,7 +114,7 @@ class _StartAppState extends State<StartApp> {
         androidPlatformChannelSpecifics, iOSChannelSpecifics);
 
     await flutterLocalNotificationsPlugin.show(0, 'Congratulations',
-        'You have got +50 points', platformChannelSpecifics,
+        'You have got +32 points', platformChannelSpecifics,
         payload: 'test oayload');
   }
 

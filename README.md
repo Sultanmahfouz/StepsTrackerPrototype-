@@ -11,6 +11,10 @@ A few resources to get you started if this is your first Flutter project:
 - [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
 - [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+This project is for NyarTech Flutter Developer Summer Internship 2021
+
+Funtional Requirements 10 steps including the bonus steps have been done ✅ 
+Non-functional requirements 8 steps have been done including bonus steps except Step 7 which is Privacy and security (e.g., Firestore database rules).
+Software requirements have been taken into consideration and have been followed carefully.
+
+Thank you!

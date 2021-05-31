@@ -108,6 +108,8 @@ class _LandingState extends State<Landing> {
         ),
         drawer: MainMenu(isHighlighted),
         body: Container(
+          height: MediaQuery.of(context).size.height,
+          width: MediaQuery.of(context).size.width,
           decoration: BoxDecoration(
             gradient: LinearGradient(
               begin: Alignment.topCenter,

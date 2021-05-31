@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:steps_tracker_prototype/app_localization.dart';
 import 'package:steps_tracker_prototype/models/reward.dart';
 
 import 'item.dart';
@@ -32,13 +33,17 @@ class _CouponListCardState extends State<CouponListCard> {
       } else {
         return Container(
           padding: EdgeInsets.all(10),
-          child: Text('Unfortunately, no rewards availabe at the moment :)'),
+          child: Text(
+            AppLocalizations.of(context).getTitle("message_no_coupons"),
+          ),
         );
       }
     } else {
       return Container(
         padding: EdgeInsets.all(10),
-        child: Text('Unfortunately, no rewards availabe at the moment :)'),
+        child: Text(
+          AppLocalizations.of(context).getTitle("message_no_coupons"),
+        ),
       );
     }
   }

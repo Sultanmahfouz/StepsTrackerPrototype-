@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
+import 'package:steps_tracker_prototype/app_localization.dart';
 import 'package:steps_tracker_prototype/components/constants.dart';
 import 'package:steps_tracker_prototype/screens/authentication/login.dart';
 import 'package:steps_tracker_prototype/services/auth.dart';
@@ -44,7 +45,7 @@ class _RegisterationState extends State<Registeration> {
                 Padding(
                   padding: EdgeInsets.only(top: 200, left: 25),
                   child: Text(
-                    'Sign Up',
+                    AppLocalizations.of(context).getTitle("Sign_up"),
                     style: textHeaderStyle,
                   ),
                 ),
@@ -57,8 +58,10 @@ class _RegisterationState extends State<Registeration> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         TextFormField(
-                          validator: (value) =>
-                              value.isEmpty ? 'Enter a valid email' : null,
+                          validator: (value) => value.isEmpty
+                              ? AppLocalizations.of(context)
+                                  .getTitle("massege_validation_email")
+                              : null,
                           style: TextStyle(color: primaryColor),
                           onChanged: (value) {
                             setState(() {
@@ -67,7 +70,8 @@ class _RegisterationState extends State<Registeration> {
                           },
                           keyboardType: TextInputType.emailAddress,
                           decoration: fieldDecoration.copyWith(
-                            labelText: 'Email',
+                            labelText:
+                                AppLocalizations.of(context).getTitle("Email"),
                             labelStyle: TextStyle(
                               color: Theme.of(context).primaryColor,
                             ),
@@ -82,7 +86,8 @@ class _RegisterationState extends State<Registeration> {
                         ),
                         TextFormField(
                           validator: (value) => value.length < 6
-                              ? 'Enter a valid password more than 6 characters'
+                              ? AppLocalizations.of(context)
+                                  .getTitle("massege_validation_password")
                               : null,
                           style: TextStyle(color: primaryColor),
                           onChanged: (value) {
@@ -92,7 +97,8 @@ class _RegisterationState extends State<Registeration> {
                           },
                           obscureText: true,
                           decoration: fieldDecoration.copyWith(
-                            labelText: 'Password',
+                            labelText: AppLocalizations.of(context)
+                                .getTitle("Password"),
                             labelStyle: TextStyle(
                               color: Theme.of(context).primaryColor,
                             ),
@@ -111,35 +117,35 @@ class _RegisterationState extends State<Registeration> {
                 ),
                 Center(
                   child: AuthButton(
-                    onPressed: () async {
-                      if (_formkey.currentState.validate()) {
-                        setState(() {
-                          showSpinner = true;
-                        });
-                        dynamic result = await _auth.signUpWithEmailAndPassword(
-                          email,
-                          password,
-                          '', // name and image are not required from the user at this stage
-                          '',
-                          '0',
-                        );
-                        if (result == null) {
+                      onPressed: () async {
+                        if (_formkey.currentState.validate()) {
                           setState(() {
-                            error = 'Please enter a valid email or password';
+                            showSpinner = true;
                           });
-                        } else {
-                          Navigator.pushReplacement(
-                            context,
-                            MaterialPageRoute(builder: (_) => GetInfo()),
+                          dynamic result =
+                              await _auth.signUpWithEmailAndPassword(
+                            email,
+                            password,
+                            '', // name and image are not required from the user at this stage
+                            '',
+                            '0',
                           );
+                          if (result == null) {
+                            setState(() {
+                              error = 'Please enter a valid email or password';
+                            });
+                          } else {
+                            Navigator.pushReplacement(
+                              context,
+                              MaterialPageRoute(builder: (_) => GetInfo()),
+                            );
+                          }
+                          setState(() {
+                            showSpinner = false;
+                          });
                         }
-                        setState(() {
-                          showSpinner = false;
-                        });
-                      }
-                    },
-                    title: 'SIGN UP',
-                  ),
+                      },
+                      title: AppLocalizations.of(context).getTitle("Sign_up")),
                 ),
                 SizedBox(
                   height: 10,
@@ -148,7 +154,7 @@ class _RegisterationState extends State<Registeration> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
-                      'Have an account?',
+                      AppLocalizations.of(context).getTitle("have_an_account"),
                       style: TextStyle(color: Colors.white),
                     ),
                     SizedBox(
@@ -162,7 +168,7 @@ class _RegisterationState extends State<Registeration> {
                         );
                       },
                       child: Text(
-                        'sign in',
+                        AppLocalizations.of(context).getTitle("sign_in"),
                         style: TextStyle(
                           color: Colors.white,
                           fontWeight: FontWeight.bold,

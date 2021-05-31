@@ -38,6 +38,11 @@ var fieldDecoration = InputDecoration(
 
 int allStepsTaken = 0;
 
+var arabic = Locale('ar', 'Ar');
+var english = Locale('en', 'US');
+
+var language = english;
+
 int healthPoints = 30;
 
 bool isAnon = false;

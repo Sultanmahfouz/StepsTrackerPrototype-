@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:steps_tracker_prototype/app_localization.dart';
 import 'package:steps_tracker_prototype/menu/drawer.dart';
 
 import 'card/list.dart';
@@ -16,7 +17,7 @@ class HistoryMain extends StatelessWidget {
         elevation: 0,
         backgroundColor: Theme.of(context).scaffoldBackgroundColor,
         title: Text(
-          'History',
+          AppLocalizations.of(context).getTitle("history_appBar"),
           style: TextStyle(
             color: Theme.of(context).primaryColor,
           ),

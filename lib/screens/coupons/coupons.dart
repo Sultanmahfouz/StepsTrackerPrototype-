@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:steps_tracker_prototype/app_localization.dart';
 import 'package:steps_tracker_prototype/components/constants.dart';
 import 'package:steps_tracker_prototype/menu/drawer.dart';
 
@@ -24,7 +25,7 @@ class _CouponsState extends State<Coupons> {
         elevation: 0,
         backgroundColor: Theme.of(context).scaffoldBackgroundColor,
         title: Text(
-          'Coupons',
+          AppLocalizations.of(context).getTitle("coupons_appBar"),
           style: TextStyle(
             color: Theme.of(context).primaryColor,
           ),
@@ -41,9 +42,13 @@ class _CouponsState extends State<Coupons> {
                 padding: EdgeInsets.only(
                   top: MediaQuery.of(context).size.height / 8,
                   left: 30,
+                  right: 30,
                 ),
                 child: Text(
-                  userCoupons.length != 0 ? 'Available Coupons' : ': (',
+                  userCoupons.length != 0
+                      ? AppLocalizations.of(context)
+                          .getTitle("available_coupons")
+                      : ': (',
                   style: TextStyle(
                     color: Theme.of(context).primaryColor,
                     fontSize: 23,

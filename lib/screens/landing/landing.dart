@@ -1,10 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:steps_tracker_prototype/app_localization.dart';
 import 'package:steps_tracker_prototype/components/constants.dart';
 import 'package:steps_tracker_prototype/menu/main.dart';
 import 'package:steps_tracker_prototype/models/user.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'package:steps_tracker_prototype/screens/rewards/main.dart';
 
 class Landing extends StatefulWidget {
   @override
@@ -19,73 +21,18 @@ class _LandingState extends State<Landing> {
       new FlutterLocalNotificationsPlugin();
 
   InitializationSettings initilizationSettings;
+  Locale locale;
 
-  void _showNotification() async {
-    await _demoNotification();
-  }
-
-  Future<void> _demoNotification() async {
-    var androidPlatformChannelSpecifics = AndroidNotificationDetails(
-        'channel_ID', 'channel name', 'channel description',
-        importance: Importance.Max,
-        priority: Priority.High,
-        ticker: 'test ticker');
-
-    var iOSChannelSpecifics = IOSNotificationDetails();
-    var platformChannelSpecifics = NotificationDetails(
-        androidPlatformChannelSpecifics, iOSChannelSpecifics);
-
-    await flutterLocalNotificationsPlugin.show(
-        0, 'دعاء', 'لا اله الا الله وحده لا شريك له', platformChannelSpecifics,
-        payload: 'test oayload');
+  void setLocale(Locale loc) {
+    setState(() {
+      locale = loc;
+    });
   }
 
   @override
   void initState() {
     super.initState();
     username = 'guest';
-    var initilizationSettingsAndroid =
-        new AndroidInitializationSettings('@mipmap/ic_launcher');
-    var initilizationSettingsIOS = new IOSInitializationSettings(
-        requestAlertPermission: true,
-        requestBadgePermission: true,
-        requestSoundPermission: true,
-        onDidReceiveLocalNotification: onDidReceiveLocalNotification);
-    initilizationSettings = new InitializationSettings(
-      initilizationSettingsAndroid,
-      initilizationSettingsIOS,
-    );
-    flutterLocalNotificationsPlugin.initialize(initilizationSettings,
-        onSelectNotification: onSelectNotification);
-  }
-
-  Future onSelectNotification(String payload) async {
-    if (payload != null) {
-      debugPrint('Notification payload: $payload');
-    }
-    await Navigator.push(context,
-        new MaterialPageRoute(builder: (context) => new SecondRoute()));
-  }
-
-  Future onDidReceiveLocalNotification(
-      int id, String title, String body, String payload) async {
-    await showDialog(
-        context: context,
-        builder: (BuildContext context) => CupertinoAlertDialog(
-              title: Text(title),
-              content: Text(body),
-              actions: <Widget>[
-                CupertinoDialogAction(
-                  isDefaultAction: true,
-                  child: Text('Ok'),
-                  onPressed: () async {
-                    Navigator.of(context, rootNavigator: true).pop();
-                    await Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => SecondRoute()));
-                  },
-                )
-              ],
-            ));
   }
 
   @override
@@ -98,7 +45,7 @@ class _LandingState extends State<Landing> {
         appBar: AppBar(
           iconTheme: Theme.of(context).iconTheme,
           title: Text(
-            'Healthy',
+            AppLocalizations.of(context).getTitle("landing_appBar"),
             style: TextStyle(
               color: Theme.of(context).primaryColor,
             ),
@@ -144,9 +91,10 @@ class _LandingState extends State<Landing> {
                                 : NetworkImage(user?.avatar),
                       ),
                       Container(
-                        padding: EdgeInsets.only(left: 14),
+                        padding: EdgeInsets.only(left: 14, right: 14),
                         child: Text(
-                          'Hey ',
+                          AppLocalizations.of(context)
+                              .getTitle("welcoming_user"),
                           style: TextStyle(
                             fontSize: 20,
                           ),
@@ -175,7 +123,7 @@ class _LandingState extends State<Landing> {
                   child: Container(
                     height: 40,
                     child: Text(
-                      'Welcome to Healthy App',
+                      AppLocalizations.of(context).getTitle("welcoming_to_app"),
                       style: TextStyle(
                         fontSize: 18,
                         fontWeight: FontWeight.bold,
@@ -201,18 +149,14 @@ class _LandingState extends State<Landing> {
                     elevation: 4,
                     color: Theme.of(context).primaryColor,
                     onPressed: () {
-                      _showNotification();
-                      print('should show notification');
+                      Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(builder: (context) => MainReward()),
+                      );
                     },
-                    // onPressed: () {
-                    //   Navigator.pushReplacement(
-                    //     context,
-                    //     MaterialPageRoute(builder: (context) => MainReward()),
-                    //   );
-                    // },
                     child: Center(
                       child: Text(
-                        'START',
+                        AppLocalizations.of(context).getTitle("landing_button"),
                         style: TextStyle(
                           color: Colors.white,
                           letterSpacing: 1.5,

@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -9,8 +11,10 @@ import 'package:steps_tracker_prototype/screens/landing/landing.dart';
 import 'package:steps_tracker_prototype/services/step.dart';
 import 'package:steps_tracker_prototype/services/user.dart';
 import 'Theme/theme_provider.dart';
+import 'app_localization.dart';
 import 'components/constants.dart';
 import 'models/user.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 
 class StartApp extends StatefulWidget {
   static String id = 'start_screen';
@@ -121,6 +125,7 @@ class _StartAppState extends State<StartApp> {
   void initState() {
     super.initState();
     initPlatformState();
+    showLanguage();
     var initilizationSettingsAndroid =
         new AndroidInitializationSettings('@mipmap/ic_launcher');
     var initilizationSettingsIOS = new IOSInitializationSettings(
@@ -134,6 +139,12 @@ class _StartAppState extends State<StartApp> {
     );
     flutterLocalNotificationsPlugin.initialize(initilizationSettings,
         onSelectNotification: onSelectNotification);
+  }
+
+  Future<void> showLanguage() async {
+    Timer.periodic(Duration(milliseconds: 100), (timer) {
+      setState(() {});
+    });
   }
 
   Future onSelectNotification(String payload) async {
@@ -165,6 +176,18 @@ class _StartAppState extends State<StartApp> {
             ));
   }
 
+  Locale _locale;
+
+  void setLocale(Locale loc) {
+    setState(() {
+      _locale = loc;
+    });
+  }
+
+  Locale getLocale() {
+    return _locale;
+  }
+
   @override
   Widget build(BuildContext context) {
     return StreamProvider<List<UserData>>.value(
@@ -177,6 +200,33 @@ class _StartAppState extends State<StartApp> {
           builder: (context, _) {
             final themeProvider = Provider.of<ThemeProvider>(context);
             return MaterialApp(
+              supportedLocales: [
+                Locale('en', 'US'),
+                Locale('ar', 'SA'),
+              ],
+              locale: language,
+              // These delegates make sure that the localization data for the proper language is loaded
+              localizationsDelegates: [
+                // THIS CLASS WILL BE ADDED LATER
+                // A class which loads the translations from JSON files
+                AppLocalizations.delegate,
+                // Built-in localization of basic text for Material widgets
+                GlobalMaterialLocalizations.delegate,
+                // Built-in localization for text direction LTR/RTL
+                GlobalWidgetsLocalizations.delegate,
+                GlobalCupertinoLocalizations.delegate,
+              ],
+              // Returns a locale which will be used by the app
+              localeResolutionCallback: (locale, supportedLocales) {
+                for (var supportedLocale in supportedLocales) {
+                  if (supportedLocale.languageCode == locale.languageCode) {
+                    return supportedLocale;
+                  }
+                }
+
+                // can't find any matching locale
+                return supportedLocales.first;
+              },
               debugShowCheckedModeBanner: false,
               themeMode: themeProvider.themeMode,
               theme: MyTheme.lightTheme,

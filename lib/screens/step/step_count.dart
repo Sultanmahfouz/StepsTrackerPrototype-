@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-
-import 'package:steps_tracker_prototype/components/constants.dart';
+import 'package:steps_tracker_prototype/app_localization.dart';
 import 'package:steps_tracker_prototype/menu/drawer.dart';
 import 'package:intl/intl.dart';
 import 'package:steps_tracker_prototype/services/step.dart';
@@ -20,7 +19,7 @@ class _StepCounterState extends State<StepCounter> {
       appBar: AppBar(
         iconTheme: Theme.of(context).iconTheme,
         title: Text(
-          'Steps',
+          AppLocalizations.of(context).getTitle("steps_appBar"),
           style: TextStyle(
             color: Theme.of(context).primaryColor,
           ),
@@ -38,7 +37,7 @@ class _StepCounterState extends State<StepCounter> {
                 height: 40,
                 child: Center(
                   child: Text(
-                    'number of steps',
+                    AppLocalizations.of(context).getTitle("number_of_steps"),
                     style: TextStyle(
                       fontSize: 20,
                       fontWeight: FontWeight.bold,
@@ -69,45 +68,6 @@ class _StepCounterState extends State<StepCounter> {
                     fontSize: 12,
                   ),
                 ),
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    'current step: ',
-                    style: TextStyle(color: Colors.white),
-                  ),
-                  Text(
-                    StepCounting.currentStep.toString(),
-                    style: TextStyle(fontSize: 40, color: Colors.white),
-                  ),
-                ],
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    'initial step: ',
-                    style: TextStyle(color: Colors.white),
-                  ),
-                  Text(
-                    StepCounting.initialStep.toString(),
-                    style: TextStyle(fontSize: 40, color: Colors.white),
-                  ),
-                ],
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    'total Points: ',
-                    style: TextStyle(color: Colors.white),
-                  ),
-                  Text(
-                    healthPoints.toString(),
-                    style: TextStyle(fontSize: 40, color: Colors.white),
-                  ),
-                ],
               ),
             ],
           ),

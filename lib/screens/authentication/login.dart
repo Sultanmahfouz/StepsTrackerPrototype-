@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
+import 'package:steps_tracker_prototype/app_localization.dart';
 import 'package:steps_tracker_prototype/components/constants.dart';
 import 'package:steps_tracker_prototype/screens/authentication/registration.dart';
 import 'package:steps_tracker_prototype/screens/user_info.dart';
@@ -49,7 +50,7 @@ class _LoginState extends State<Login> {
                   Padding(
                     padding: EdgeInsets.only(top: 200, left: 25),
                     child: Text(
-                      'Sign in',
+                      AppLocalizations.of(context).getTitle("Sign_in"),
                       style: textHeaderStyle,
                     ),
                   ),
@@ -60,8 +61,10 @@ class _LoginState extends State<Login> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         TextFormField(
-                          validator: (value) =>
-                              value.isEmpty ? 'Enter a valid email' : null,
+                          validator: (value) => value.isEmpty
+                              ? AppLocalizations.of(context)
+                                  .getTitle("massege_validation_email")
+                              : null,
                           style: TextStyle(color: primaryColor),
                           onChanged: (value) {
                             setState(() {
@@ -70,7 +73,8 @@ class _LoginState extends State<Login> {
                           },
                           keyboardType: TextInputType.emailAddress,
                           decoration: fieldDecoration.copyWith(
-                            labelText: 'Email',
+                            labelText:
+                                AppLocalizations.of(context).getTitle("Email"),
                             labelStyle: TextStyle(
                               color: Theme.of(context).primaryColor,
                             ),
@@ -85,7 +89,8 @@ class _LoginState extends State<Login> {
                         ),
                         TextFormField(
                           validator: (value) => value.length < 6
-                              ? 'Enter a valid password more than 6 characters'
+                              ? AppLocalizations.of(context)
+                                  .getTitle("massege_validation_password")
                               : null,
                           style: TextStyle(color: primaryColor),
                           onChanged: (value) {
@@ -95,7 +100,8 @@ class _LoginState extends State<Login> {
                           },
                           obscureText: true,
                           decoration: fieldDecoration.copyWith(
-                            labelText: 'Password',
+                            labelText: AppLocalizations.of(context)
+                                .getTitle("Password"),
                             labelStyle: TextStyle(
                               color: Theme.of(context).primaryColor,
                             ),
@@ -109,18 +115,8 @@ class _LoginState extends State<Login> {
                           height: 10,
                         ),
                         Row(
+                          mainAxisAlignment: MainAxisAlignment.end,
                           children: [
-                            Expanded(
-                              child: GestureDetector(
-                                onTap: () {},
-                                child: Text(
-                                  'Forgot password',
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                  ),
-                                ),
-                              ),
-                            ),
                             GestureDetector(
                               onTap: () {
                                 Navigator.pushReplacement(
@@ -131,7 +127,8 @@ class _LoginState extends State<Login> {
                                 );
                               },
                               child: Text(
-                                'Create an account?',
+                                AppLocalizations.of(context)
+                                    .getTitle("Create_an_account"),
                                 style: TextStyle(color: Colors.white),
                               ),
                             ),

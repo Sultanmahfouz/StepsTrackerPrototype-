@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:steps_tracker_prototype/app_localization.dart';
 import 'package:steps_tracker_prototype/menu/drawer.dart';
 import 'package:steps_tracker_prototype/models/user.dart';
 import 'package:steps_tracker_prototype/screens/competition/card/list.dart';
@@ -30,7 +31,7 @@ class _CompetitionsState extends State<Competitions> {
         elevation: 0,
         backgroundColor: Theme.of(context).scaffoldBackgroundColor,
         title: Text(
-          'Competition',
+          AppLocalizations.of(context).getTitle("competition_appBar"),
           style: TextStyle(
             color: Theme.of(context).primaryColor,
           ),
@@ -49,11 +50,12 @@ class _CompetitionsState extends State<Competitions> {
                     padding: EdgeInsets.only(
                       top: MediaQuery.of(context).size.height / 8,
                       left: 30,
+                      right: 30,
                     ),
                     child: Row(
                       children: [
                         Text(
-                          'Rankings',
+                          AppLocalizations.of(context).getTitle("Rankings"),
                           style: TextStyle(
                             color: Theme.of(context).primaryColor,
                             fontSize: 23,

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:steps_tracker_prototype/components/constants.dart';
 
+import '../../../app_localization.dart';
 import 'item.dart';
 
 // ignore: must_be_immutable
@@ -27,7 +28,10 @@ class _HistoryListCardState extends State<HistoryListCard> {
     } else {
       return Center(
         child: Container(
-          child: Text('Unfortunately, no history availabe at the moment :)'),
+          child: Text(
+            AppLocalizations.of(context)
+                .getTitle("massage_history_not_available"),
+          ),
         ),
       );
     }

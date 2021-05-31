@@ -1,6 +1,9 @@
+import 'dart:async';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
+import 'package:steps_tracker_prototype/app_localization.dart';
 import 'package:steps_tracker_prototype/components/constants.dart';
 import 'package:steps_tracker_prototype/models/user.dart';
 import 'package:steps_tracker_prototype/screens/authentication/login.dart';
@@ -20,6 +23,19 @@ class MainAuthendication extends StatefulWidget {
 class _MainAuthendicationState extends State<MainAuthendication> {
   bool showSpinner = false;
   final AuthService _auth = AuthService();
+
+  @override
+  void initState() {
+    showLanguage();
+    super.initState();
+  }
+
+  Future<void> showLanguage() async {
+    Timer.periodic(Duration(milliseconds: 100), (timer) {
+      setState(() {});
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -45,7 +61,7 @@ class _MainAuthendicationState extends State<MainAuthendication> {
                 Padding(
                   padding: EdgeInsets.only(top: 200.0),
                   child: Text(
-                    'HEALTHY LOGO',
+                    AppLocalizations.of(context).getTitle("Healthy"),
                     style: TextStyle(
                       color: Colors.white,
                       fontWeight: FontWeight.bold,
@@ -76,7 +92,7 @@ class _MainAuthendicationState extends State<MainAuthendication> {
                         child: Padding(
                           padding: EdgeInsets.only(top: 6.0),
                           child: Text(
-                            'LOGIN',
+                            AppLocalizations.of(context).getTitle("Login"),
                             style: TextStyle(
                               color: Colors.white,
                               letterSpacing: 2.0,
@@ -115,7 +131,7 @@ class _MainAuthendicationState extends State<MainAuthendication> {
                         child: Padding(
                           padding: EdgeInsets.only(top: 6.0),
                           child: Text(
-                            'SIGN UP',
+                            AppLocalizations.of(context).getTitle("SIGN_UP"),
                             style: TextStyle(
                               letterSpacing: 2.0,
                               fontWeight: FontWeight.bold,
@@ -149,14 +165,16 @@ class _MainAuthendicationState extends State<MainAuthendication> {
                       );
                       Navigator.pushReplacement(context,
                           MaterialPageRoute(builder: (context) => GetInfo()));
-                      setState(() {
-                        showSpinner = false;
-                        isAnon = true;
-                      });
+                      if (mounted) {
+                        setState(() {
+                          showSpinner = false;
+                          isAnon = true;
+                        });
+                      }
                     }
                   },
                   child: Text(
-                    'Join as a guest',
+                    AppLocalizations.of(context).getTitle("join_as_a_guest"),
                     style: TextStyle(
                       fontSize: 16,
                       decoration: TextDecoration.underline,

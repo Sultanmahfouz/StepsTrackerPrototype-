@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:steps_tracker_prototype/app_localization.dart';
 import 'package:steps_tracker_prototype/components/constants.dart';
 import 'package:steps_tracker_prototype/models/menu.dart';
 import 'package:steps_tracker_prototype/models/user.dart';
@@ -33,54 +34,54 @@ class _MyDrawerState extends State<MyDrawer> {
     HistoryMain(),
     SettingsScreen(),
   ];
-  List<MenuElement> menuElements = [
-    MenuElement(
-      title: 'Home',
-      icon: Icon(
-        Icons.person,
-      ),
-    ),
-    MenuElement(
-      title: 'Competition',
-      icon: Icon(
-        Icons.directions_walk_rounded,
-      ),
-    ),
-    MenuElement(
-      title: 'Rewards',
-      icon: Icon(
-        Icons.card_giftcard_sharp,
-      ),
-    ),
-    MenuElement(
-      title: 'Steps',
-      icon: Icon(
-        Icons.directions_walk_outlined,
-      ),
-    ),
-    MenuElement(
-      title: 'Coupons',
-      icon: Icon(
-        Icons.code,
-      ),
-    ),
-    MenuElement(
-      title: 'History',
-      icon: Icon(
-        Icons.history,
-      ),
-    ),
-    MenuElement(
-      title: 'Settings',
-      icon: Icon(
-        Icons.settings,
-      ),
-    ),
-  ];
 
   @override
   Widget build(BuildContext context) {
     final user = Provider.of<UserData>(context);
+    List<MenuElement> menuElements = [
+      MenuElement(
+        title: AppLocalizations.of(context).getTitle("Home"),
+        icon: Icon(
+          Icons.person,
+        ),
+      ),
+      MenuElement(
+        title: AppLocalizations.of(context).getTitle("Competition"),
+        icon: Icon(
+          Icons.directions_walk_rounded,
+        ),
+      ),
+      MenuElement(
+        title: AppLocalizations.of(context).getTitle("Rewards"),
+        icon: Icon(
+          Icons.card_giftcard_sharp,
+        ),
+      ),
+      MenuElement(
+        title: AppLocalizations.of(context).getTitle("Steps"),
+        icon: Icon(
+          Icons.directions_walk_outlined,
+        ),
+      ),
+      MenuElement(
+        title: AppLocalizations.of(context).getTitle("Coupons"),
+        icon: Icon(
+          Icons.code,
+        ),
+      ),
+      MenuElement(
+        title: AppLocalizations.of(context).getTitle("History"),
+        icon: Icon(
+          Icons.history,
+        ),
+      ),
+      MenuElement(
+        title: AppLocalizations.of(context).getTitle("Settings"),
+        icon: Icon(
+          Icons.settings,
+        ),
+      ),
+    ];
 
     return Drawer(
       child: Container(
@@ -191,7 +192,7 @@ class _MyDrawerState extends State<MyDrawer> {
                   },
                   child: Center(
                     child: Text(
-                      'Logout',
+                      AppLocalizations.of(context).getTitle("Logout"),
                       style: TextStyle(
                         color: Colors.white,
                         letterSpacing: 2.0,

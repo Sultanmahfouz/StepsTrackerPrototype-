@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
+import 'package:steps_tracker_prototype/app_localization.dart';
 import 'package:steps_tracker_prototype/components/constants.dart';
 import 'package:steps_tracker_prototype/menu/drawer.dart';
 import 'package:steps_tracker_prototype/models/reward.dart';
@@ -79,7 +80,7 @@ class _RewardsState extends State<Rewards> {
         elevation: 0,
         backgroundColor: Theme.of(context).scaffoldBackgroundColor,
         title: Text(
-          'Rewards',
+          AppLocalizations.of(context).getTitle("rewards_appBar"),
           style: TextStyle(
             color: Theme.of(context).primaryColor,
           ),
@@ -102,7 +103,8 @@ class _RewardsState extends State<Rewards> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Text(
-                          'Health Points',
+                          AppLocalizations.of(context)
+                              .getTitle("Health_points"),
                           style: TextStyle(
                             color: Theme.of(context).primaryColor,
                             fontWeight: FontWeight.bold,
@@ -113,7 +115,9 @@ class _RewardsState extends State<Rewards> {
                           height: 5,
                         ),
                         Text(
-                          healthPoints.toString() + '  /' + '  1000',
+                          healthPoints.toString() +
+                              '  /' +
+                              AppLocalizations.of(context).getTitle("1000"),
                           style: TextStyle(
                             fontWeight: FontWeight.bold,
                             color: Theme.of(context).primaryColor,
@@ -135,9 +139,10 @@ class _RewardsState extends State<Rewards> {
               Padding(
                 padding: EdgeInsets.only(
                   left: 30,
+                  right: 30,
                 ),
                 child: Text(
-                  'Special Rewards',
+                  AppLocalizations.of(context).getTitle("special_rewards"),
                   style: TextStyle(
                     color: Theme.of(context).primaryColor,
                     fontSize: 23,
@@ -148,12 +153,14 @@ class _RewardsState extends State<Rewards> {
                 height: 30,
               ),
               CategoryListRewards(
-                firstCategory: 'All',
-                secondCategory: 'Watches',
-                thirdCategory: 'Tech',
-                fourthCategory: 'Toys',
-                fifthCategory: 'Perfumes',
-                sixthCategory: 'Bags',
+                firstCategory: AppLocalizations.of(context).getTitle("All"),
+                secondCategory:
+                    AppLocalizations.of(context).getTitle("Watches"),
+                thirdCategory: AppLocalizations.of(context).getTitle("Tech"),
+                fourthCategory: AppLocalizations.of(context).getTitle("Toys"),
+                fifthCategory:
+                    AppLocalizations.of(context).getTitle("Perfumes"),
+                sixthCategory: AppLocalizations.of(context).getTitle("Bags"),
                 callBack: categoryListCallBack,
               ),
               Padding(
@@ -173,25 +180,25 @@ class _RewardsState extends State<Rewards> {
 
   void categoryListCallBack(String category) {
     currentRewards.clear();
-    if (category == 'All') {
+    if (category == 'All' || category == 'الكل') {
       currentRewards.addAll(widget.allAvailableRewards);
-    } else if (category == 'Watches') {
+    } else if (category == 'Watches' || category == "الساعات") {
       currentRewards = widget.allAvailableRewards
           .where((reward) => reward.category == 'Watches')
           .toList();
-    } else if (category == 'Perfumes') {
+    } else if (category == 'Perfumes' || category == "عطور") {
       currentRewards = widget.allAvailableRewards
           .where((reward) => reward.category == 'Perfumes')
           .toList();
-    } else if (category == 'Toys') {
+    } else if (category == 'Toys' || category == "العاب") {
       currentRewards = widget.allAvailableRewards
           .where((reward) => reward.category == 'Toys')
           .toList();
-    } else if (category == 'Tech') {
+    } else if (category == 'Tech' || category == "تكنولوجيا") {
       currentRewards = widget.allAvailableRewards
           .where((reward) => reward.category == 'Tech')
           .toList();
-    } else if (category == 'Bags') {
+    } else if (category == 'Bags' || category == "حقائب") {
       currentRewards = widget.allAvailableRewards
           .where((reward) => reward.category == 'Bags')
           .toList();

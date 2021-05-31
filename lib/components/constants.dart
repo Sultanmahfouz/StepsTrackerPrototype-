@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:steps_tracker_prototype/models/history.dart';
 import 'package:steps_tracker_prototype/models/reward.dart';
 
 Color primaryColor = Color(0xFF1CA0DE);
@@ -42,3 +43,5 @@ int healthPoints = 30;
 bool isAnon = false;
 
 List<Reward> userCoupons = [];
+
+List<History> userHistory = [];

@@ -69,10 +69,10 @@ class _RewardItemCardState extends State<RewardItemCard> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    widget.reward.owner,
+                    widget.reward.owner ?? 'owner',
                   ),
                   Text(
-                    widget.reward.product,
+                    widget.reward.product ?? 'product',
                   ),
                   Row(
                     children: [
@@ -84,7 +84,7 @@ class _RewardItemCardState extends State<RewardItemCard> {
                         width: 3,
                       ),
                       Text(
-                        widget.reward.points,
+                        widget.reward.points ?? '',
                       ),
                     ],
                   ),

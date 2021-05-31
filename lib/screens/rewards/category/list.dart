@@ -7,14 +7,19 @@ class CategoryListRewards extends StatefulWidget {
   String secondCategory;
   String thirdCategory;
   String fourthCategory;
+  String fifthCategory;
+  String sixthCategory;
   Function callBack;
 
-  CategoryListRewards(
-      {this.firstCategory,
-      this.secondCategory,
-      this.thirdCategory,
-      this.fourthCategory,
-      this.callBack});
+  CategoryListRewards({
+    this.firstCategory,
+    this.secondCategory,
+    this.thirdCategory,
+    this.fourthCategory,
+    this.fifthCategory,
+    this.sixthCategory,
+    this.callBack,
+  });
 
   @override
   _CategoryListRewardsState createState() => _CategoryListRewardsState();
@@ -31,6 +36,8 @@ class _CategoryListRewardsState extends State<CategoryListRewards> {
       widget.secondCategory,
       widget.thirdCategory,
       widget.fourthCategory,
+      widget.fifthCategory,
+      widget.sixthCategory
     ]);
 
     selectedCategory = categoryListRewards.first;

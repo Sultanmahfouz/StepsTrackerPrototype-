@@ -4,7 +4,6 @@ import 'package:steps_tracker_prototype/components/constants.dart';
 import 'package:steps_tracker_prototype/components/messages.dart';
 import 'package:steps_tracker_prototype/models/history.dart';
 import 'package:steps_tracker_prototype/models/reward.dart';
-import 'package:steps_tracker_prototype/screens/history/history.dart';
 import 'package:steps_tracker_prototype/services/reward.dart';
 
 // ignore: must_be_immutable

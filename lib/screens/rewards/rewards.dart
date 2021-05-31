@@ -23,6 +23,7 @@ class _RewardsState extends State<Rewards> {
 
   String currentCategory = 'All';
   String selectedCategory;
+  // dummy list
   List<Reward> allRewards = [
     Reward(
       id: '87463',
@@ -50,26 +51,6 @@ class _RewardsState extends State<Rewards> {
     ),
   ];
   List<Reward> currentRewards = [];
-  void categoryListCallBack(String category) {
-    currentRewards.clear();
-    if (category == 'All') {
-      currentRewards.addAll(widget.allAvailableRewards);
-    } else if (category == 'Watches') {
-      currentRewards = widget.allAvailableRewards
-          .where((reward) => reward.category == 'Watches')
-          .toList();
-    } else if (category == 'Perfumes') {
-      currentRewards = widget.allAvailableRewards
-          .where((reward) => reward.category == 'Perfumes')
-          .toList();
-    } else if (category == 'Toys') {
-      currentRewards = widget.allAvailableRewards
-          .where((reward) => reward.category == 'Toys')
-          .toList();
-    }
-
-    setState(() {});
-  }
 
   @override
   void initState() {
@@ -169,8 +150,10 @@ class _RewardsState extends State<Rewards> {
               CategoryListRewards(
                 firstCategory: 'All',
                 secondCategory: 'Watches',
-                thirdCategory: 'Perfumes',
+                thirdCategory: 'Tech',
                 fourthCategory: 'Toys',
+                fifthCategory: 'Perfumes',
+                sixthCategory: 'Bags',
                 callBack: categoryListCallBack,
               ),
               Padding(
@@ -186,5 +169,34 @@ class _RewardsState extends State<Rewards> {
         ),
       ),
     );
+  }
+
+  void categoryListCallBack(String category) {
+    currentRewards.clear();
+    if (category == 'All') {
+      currentRewards.addAll(widget.allAvailableRewards);
+    } else if (category == 'Watches') {
+      currentRewards = widget.allAvailableRewards
+          .where((reward) => reward.category == 'Watches')
+          .toList();
+    } else if (category == 'Perfumes') {
+      currentRewards = widget.allAvailableRewards
+          .where((reward) => reward.category == 'Perfumes')
+          .toList();
+    } else if (category == 'Toys') {
+      currentRewards = widget.allAvailableRewards
+          .where((reward) => reward.category == 'Toys')
+          .toList();
+    } else if (category == 'Tech') {
+      currentRewards = widget.allAvailableRewards
+          .where((reward) => reward.category == 'Tech')
+          .toList();
+    } else if (category == 'Bags') {
+      currentRewards = widget.allAvailableRewards
+          .where((reward) => reward.category == 'Bags')
+          .toList();
+    }
+
+    setState(() {});
   }
 }

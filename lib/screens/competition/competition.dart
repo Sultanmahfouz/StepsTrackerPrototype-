@@ -17,7 +17,7 @@ class Competitions extends StatefulWidget {
 }
 
 class _CompetitionsState extends State<Competitions> {
-  List<bool> isHighlighted = [false, true, false, false, false, false];
+  List<bool> isHighlighted = [false, true, false, false, false, false, false];
   List<UserData> currentUsers = [];
 
   @override

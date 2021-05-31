@@ -12,7 +12,7 @@ class Landing extends StatefulWidget {
 }
 
 class _LandingState extends State<Landing> {
-  List<bool> isHighlighted = [true, false, false, false, false, false];
+  List<bool> isHighlighted = [true, false, false, false, false, false, false];
   String username;
 
   FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =

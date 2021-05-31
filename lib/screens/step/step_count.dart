@@ -11,7 +11,7 @@ class StepCounter extends StatefulWidget {
 }
 
 class _StepCounterState extends State<StepCounter> {
-  List<bool> isHighlighted = [false, false, false, true, false, false];
+  List<bool> isHighlighted = [false, false, false, true, false, false, false];
 
   @override
   Widget build(BuildContext context) {

@@ -4,7 +4,7 @@ import 'package:steps_tracker_prototype/menu/main.dart';
 
 // ignore: must_be_immutable
 class SettingsScreen extends StatelessWidget {
-  List<bool> isHighlighted = [false, false, false, false, false, true];
+  List<bool> isHighlighted = [false, false, false, false, false, false, true];
 
   @override
   Widget build(BuildContext context) {

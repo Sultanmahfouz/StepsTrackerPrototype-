@@ -7,6 +7,7 @@ import 'package:steps_tracker_prototype/models/user.dart';
 import 'package:steps_tracker_prototype/screens/authentication/main_auth.dart';
 import 'package:steps_tracker_prototype/screens/competition/main.dart';
 import 'package:steps_tracker_prototype/screens/coupons/coupons.dart';
+import 'package:steps_tracker_prototype/screens/history/history.dart';
 import 'package:steps_tracker_prototype/screens/landing/landing.dart';
 import 'package:steps_tracker_prototype/screens/rewards/main.dart';
 import 'package:steps_tracker_prototype/screens/step/step_count.dart';
@@ -29,6 +30,7 @@ class _MyDrawerState extends State<MyDrawer> {
     MainReward(),
     StepCounter(),
     Coupons(),
+    HistoryMain(),
     SettingsScreen(),
   ];
   List<MenuElement> menuElements = [
@@ -39,10 +41,11 @@ class _MyDrawerState extends State<MyDrawer> {
       ),
     ),
     MenuElement(
-        title: 'Competition',
-        icon: Icon(
-          Icons.directions_walk_rounded,
-        )),
+      title: 'Competition',
+      icon: Icon(
+        Icons.directions_walk_rounded,
+      ),
+    ),
     MenuElement(
       title: 'Rewards',
       icon: Icon(
@@ -59,6 +62,12 @@ class _MyDrawerState extends State<MyDrawer> {
       title: 'Coupons',
       icon: Icon(
         Icons.code,
+      ),
+    ),
+    MenuElement(
+      title: 'History',
+      icon: Icon(
+        Icons.history,
       ),
     ),
     MenuElement(
@@ -109,7 +118,7 @@ class _MyDrawerState extends State<MyDrawer> {
                 ? Container()
                 : Text(FirebaseAuth.instance.currentUser?.email ?? ''),
             Container(
-              height: 400,
+              height: 440,
               child: ListView.builder(
                 itemCount: menuElements.length,
                 itemBuilder: (context, index) {

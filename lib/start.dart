@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:pedometer/pedometer.dart';
 import 'package:provider/provider.dart';
+import 'package:steps_tracker_prototype/models/history.dart';
 import 'package:steps_tracker_prototype/screens/landing/landing.dart';
 import 'package:steps_tracker_prototype/services/step.dart';
 import 'package:steps_tracker_prototype/services/user.dart';
@@ -43,8 +44,16 @@ class _StartAppState extends State<StartApp> {
 
       exchangePointsOccured = exchangePoints();
 
-      if (healthPoints > 50 && trigger == 1) {
+      if (healthPoints > 35 && trigger == 1) {
         _showNotification();
+        userHistory.add(
+          History(
+            points: 35,
+            exchangeDate: DateTime.now(),
+            owner: '',
+            kind: 'gained',
+          ),
+        );
         setState(() {
           trigger = 0;
         });
